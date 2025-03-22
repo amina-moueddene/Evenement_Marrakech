@@ -18,7 +18,7 @@ Ce projet consiste en la création d'une plateforme web de gestion des événeme
 
 - **AIT MESSKINE Mohammed** 
 - **DADDA  Hiba**
-- **MOUEDDENE Amina **
+- **MOUEDDENE Amina**
 - **MOUEDDENE Wafae** 
 
 ## 🛠️ Fonctionnalités principales
