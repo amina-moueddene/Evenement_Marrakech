@@ -23,7 +23,7 @@ Ce projet consiste en la création d'une plateforme web de gestion des événeme
 
 ## 🛠️ Fonctionnalités principales
 
-✅ **Gestion des événements** (création, modification, suppression)
+✅ **Gestion des événements** (création, modification, suppression) <br/>
 ✅ **Recherche et filtrage** des événements par catégorie, date et lieu
 ✅ **Inscription et réservation** en ligne pour les événements
 ✅ **Espace organisateur** pour gérer les inscriptions et communiquer avec les participants
