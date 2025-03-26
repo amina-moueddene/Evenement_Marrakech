@@ -27,7 +27,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.2'
-        extensions: mbstring, dom, fileinfo, pdo_mysql # Correction cruciale ici
+        extensions: mbstring, dom, fileinfo, pdo_mysql
         coverage: none
 
     - name: Install dependencies
@@ -48,6 +48,10 @@ jobs:
           echo "DB_USERNAME=root" >> .env
           echo "DB_PASSWORD=" >> .env
         fi
+
+    - name: Create database
+      run: |
+        mysql -u root -e "CREATE DATABASE IF NOT EXISTS laravel_test;"
 
     - name: Run migrations
       run: php artisan migrate:fresh --force
