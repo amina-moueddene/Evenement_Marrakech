@@ -35,14 +35,19 @@ jobs:
 
     - name: Configure environment
       run: |
-        cp .env.example .env
-        php artisan key:generate
-        echo "DB_CONNECTION=mysql" >> .env
-        echo "DB_HOST=127.0.0.1" >> .env
-        echo "DB_PORT=3306" >> .env
-        echo "DB_DATABASE=eventmanagment" >> .env
-        echo "DB_USERNAME=root" >> .env
-        echo "DB_PASSWORD=" >> .env # Mot de passe vide
+        if [ -f .env.example ]; then
+          cp .env.example .env
+        else
+          echo "APP_NAME=Laravel" > .env
+          echo "APP_ENV=local" >> .env
+          echo "APP_URL=http://localhost" >> .env
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=laravel_test" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=" >> .env
+        fi
 
     - name: Run migrations
       run: php artisan migrate:fresh --force
