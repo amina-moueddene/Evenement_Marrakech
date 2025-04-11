@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head> 
+  <head>
  @include('admin.css')
       </head>
   <body>
@@ -8,10 +8,9 @@
 
   @include('admin.sidebar')
 
-  @include('admin.body
-  ')
+  @include('admin.body')
 
-@include('admin.footer')
+  @include('admin.footer')
 
   </body>
 </html>

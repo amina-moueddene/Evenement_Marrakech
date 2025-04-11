@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
+class Event extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,9 @@ class Room extends Model
         'image',
         'description',
         'price',
-        'wifi',
+        'lieu',
         'room_type',
+        'date'
     ];
 
 }
