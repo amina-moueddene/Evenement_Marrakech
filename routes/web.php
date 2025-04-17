@@ -22,6 +22,12 @@ Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 
 route::get('/',[AdminController::class,'home']);
 
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
 
 route::get('/home',[AdminController::class,'index'])->name('home');
 
