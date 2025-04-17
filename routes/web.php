@@ -16,6 +16,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+// routes/web.php
+
+Route::post('logout', [AdminController::class, 'logout'])->name('logout');
+
 route::get('/',[AdminController::class,'home']);
 
 Route::post('/logout', function () {

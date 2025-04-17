@@ -15,6 +15,16 @@ use Illuminate\Notifications\Notification;
 
 class AdminController extends Controller
 {
+
+    public function logout(Request $request)
+    {
+        Auth::logout();  // Déconnexion de l'utilisateur
+        $request->session()->invalidate();  // Invalidation de la session
+        $request->session()->regenerateToken();  // Régénération du token CSRF pour la sécurité
+
+        return redirect('/');  // Redirection vers la page d'accueil après déconnexion
+    }
+
     public function index(){
 
         if(Auth::id()){
