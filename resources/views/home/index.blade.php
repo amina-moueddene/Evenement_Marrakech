@@ -31,7 +31,7 @@
       @include('home.about')
 
       <!-- end about -->
-      @include('home.room')
+      @include('home.event')
 
       @include('home.gallary')
 
@@ -39,9 +39,19 @@
       @include('home.contact')
       @include('home.footer')
       <!-- Javascript files-->
+      
 
+<script>
+   $(window).on("scroll", function () {
+  sessionStorage.scrollTop = $(this).scrollTop(); 
+});
 
+$(document).ready(function () {
+  if (sessionStorage.scrollTop !== undefined) { 
+    $(window).scrollTop(sessionStorage.scrollTop); 
+  }
+});
 
-
+</script>
    </body>
 </html>

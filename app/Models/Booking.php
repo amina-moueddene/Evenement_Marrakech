@@ -10,15 +10,17 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'room_id',
+        'event_id',
         'name',
         'email',
         'phone',
-
+        'start_date',
+        'end_date',
+       
     ];
 
 
-    public function room(){
-        return $this->hasOne('App\Models\Room', 'id', 'room_id');
+    public function event(){
+        return $this->hasOne('App\Models\event', 'id', 'event_id');
     }
 }

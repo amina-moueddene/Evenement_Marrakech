@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Event;
+use App\Models\event;
 use App\Models\Booking;
 use App\Models\Gallary;
 use App\Models\Contact;
@@ -30,10 +30,10 @@ class AdminController extends Controller
         if(Auth::id()){
             $usertype = Auth()->user()->usertype;
             if ($usertype =='user'){
-                $room = Event::all();
+                $event = event::all();
                 $gallary = Gallary::all();
 
-                return View ('home.index',compact('room', 'gallary'));
+                return View ('home.index',compact('event', 'gallary'));
            }
            else if ($usertype == 'admin'){
                 return View ('admin.index');
@@ -46,30 +46,31 @@ class AdminController extends Controller
 
     public function home(){
         $gallary = Gallary::all();
-        $room = Event::all();
-        return View ('home.index',compact('room', 'gallary'));
-
+        $event = event::all();
+        return View ('home.index',compact('event', 'gallary'));
+       
     }
 
 
-    public function create_room(){
-        return View ('admin.create_room');
-
+    public function create_event(){
+        return View ('admin.create_event');
+       
     }
 
-    public function add_room(Request $request){
-       $data = new Event;
-       $data -> room_title = $request->title;
+    public function add_event(Request $request){
+       $data = new event;
+       $data -> event_title = $request->title;
        $data -> description = $request->description;
        $data -> price = $request->price;
-       $data -> wifi = $request->wifi;
-       $data -> room_type = $request->type;
+       $data -> date = $request->date;
+       $data -> lieu = $request->lieu;
+       $data -> event_type = $request->type;
 
         $image = $request->image;
         if($image)
             {
                 $imagename=time().'.'.$image->getClientOriginalExtension();
-                $request->image->move('room',$imagename);
+                $request->image->move('event',$imagename);
                 $data->image = $imagename;
             }
        $data -> save();
@@ -77,52 +78,53 @@ class AdminController extends Controller
 
     }
 
-    public function view_room(){
-        $data = Event::all();
-        return View ('admin.view_room',compact('data'));
-
+    public function view_event(){
+        $data = event::all();
+        return View ('admin.view_event',compact('data'));
+       
     }
+    
 
-
-    public function room_delete($id){
-        $data = Event::find($id);
+    public function event_delete($id){
+        $data = event::find($id);
         $data->delete();
         return redirect()->back();
-
+       
     }
 
-    public function room_update($id){
-        $data = Event::find($id);
-        return View ('admin.update_room',compact('data'));
-
+    public function event_update($id){
+        $data = event::find($id);
+        return View ('admin.update_event',compact('data'));
+       
     }
 
-    public function edit_room(Request $request,$id){
-        $data = Event::find($id);
+    public function edit_event(Request $request,$id){
+        $data = event::find($id);
 
-        $data -> room_title = $request->title;
+        $data -> event_title = $request->title;
         $data -> description = $request->description;
         $data -> price = $request->price;
-        $data -> wifi = $request->wifi;
-        $data -> room_type = $request->type;
+        $data -> date = $request->date;
+        $data -> lieu = $request->lieu;
+        $data -> event_type = $request->type;
         $image = $request->image;
-
+ 
         if($image)
         {
             $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('room',$imagename);
+            $request->image->move('event',$imagename);
             $data->image = $imagename;
         }
 
         $data -> save();
           return redirect()->back();
-
+ 
      }
 
         public function bookings (){
             $data = Booking::all();
             return View ('admin.booking',compact('data'));
-
+            
         }
 
 
@@ -185,7 +187,7 @@ class AdminController extends Controller
 
         public function mail(Request $request, $id){
            $data = Contact::find($id);
-
+       
             $details = [
                 'greeting' => $request->greeting,
                 'body' => $request->body,
@@ -197,8 +199,8 @@ class AdminController extends Controller
 
             $data->notify(new SendEmailNotification($details));
             return redirect()->back();
-
+          
         }
-
+         
 }
 

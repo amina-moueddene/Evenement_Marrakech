@@ -8,7 +8,7 @@
 @media (min-width: 1200px) and (max-width: 1342px) {}
 
 @media (min-width: 992px) and (max-width: 1199px) {
-    .book_room h1 {
+    .book_event h1 {
         font-size: 28px;
     }
     .carousel-indicators {
@@ -26,7 +26,7 @@
     .carousel-item img {
         min-height: 570px;
     }
-    .book_room h1 {
+    .book_event h1 {
         font-size: 19px;
     }
     .carousel-indicators {
@@ -109,7 +109,7 @@
     .carousel-item img {
         min-height: 570px;
     }
-    .book_room h1 {
+    .book_event h1 {
         font-size: 20px;
         line-height: 25px;
         padding-bottom: 15px;

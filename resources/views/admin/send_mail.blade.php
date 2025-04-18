@@ -28,7 +28,7 @@
         font-size: 16px; /* Taille de la police */
     }
 
-    /* Style pour le bouton "Add Room" */
+    /* Style pour le bouton "Add event" */
     input[type="submit"] {
         background-color: #4CAF50; /* Couleur de fond verte */
         color: white; /* Texte blanc */
@@ -64,7 +64,7 @@
         margin-bottom: 20px; /* Espacement en bas */
     }
 
-    /* Style pour les cases à cocher (Wifi) */
+    /* Style pour les cases à cocher (lieu) */
     input[type="checkbox"] {
         margin-right: 10px; /* Espacement à droite */
     }
