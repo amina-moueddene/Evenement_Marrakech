@@ -30,10 +30,10 @@ class AdminController extends Controller
         if(Auth::id()){
             $usertype = Auth()->user()->usertype;
             if ($usertype =='user'){
-                $room = Event::all();
+                $event = Event::all();
                 $gallary = Gallary::all();
 
-                return View ('home.index',compact('room', 'gallary'));
+                return View ('home.index',compact('event', 'gallary'));
            }
            else if ($usertype == 'admin'){
                 return View ('admin.index');
@@ -46,30 +46,30 @@ class AdminController extends Controller
 
     public function home(){
         $gallary = Gallary::all();
-        $room = Event::all();
-        return View ('home.index',compact('room', 'gallary'));
+        $event = Event::all();
+        return View ('home.index',compact('event', 'gallary'));
 
     }
 
 
-    public function create_room(){
-        return View ('admin.create_room');
+    public function create_event(){
+        return View ('admin.create_event');
 
     }
 
-    public function add_room(Request $request){
+    public function add_event(Request $request){
        $data = new Event;
-       $data -> room_title = $request->title;
+       $data -> event_title = $request->title;
        $data -> description = $request->description;
        $data -> price = $request->price;
-       $data -> wifi = $request->wifi;
-       $data -> room_type = $request->type;
+       $data -> lieu = $request->lieu;
+       $data -> event_type = $request->type;
 
         $image = $request->image;
         if($image)
             {
                 $imagename=time().'.'.$image->getClientOriginalExtension();
-                $request->image->move('room',$imagename);
+                $request->image->move('event',$imagename);
                 $data->image = $imagename;
             }
        $data -> save();
@@ -77,40 +77,40 @@ class AdminController extends Controller
 
     }
 
-    public function view_room(){
+    public function view_event(){
         $data = Event::all();
-        return View ('admin.view_room',compact('data'));
+        return View ('admin.view_event',compact('data'));
 
     }
 
 
-    public function room_delete($id){
+    public function event_delete($id){
         $data = Event::find($id);
         $data->delete();
         return redirect()->back();
 
     }
 
-    public function room_update($id){
+    public function event_update($id){
         $data = Event::find($id);
-        return View ('admin.update_room',compact('data'));
+        return View ('admin.update_event',compact('data'));
 
     }
 
-    public function edit_room(Request $request,$id){
+    public function edit_event(Request $request,$id){
         $data = Event::find($id);
 
-        $data -> room_title = $request->title;
+        $data -> event_title = $request->title;
         $data -> description = $request->description;
         $data -> price = $request->price;
-        $data -> wifi = $request->wifi;
-        $data -> room_type = $request->type;
+        $data -> lieu = $request->lieu;
+        $data -> event_type = $request->type;
         $image = $request->image;
 
         if($image)
         {
             $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('room',$imagename);
+            $request->image->move('event',$imagename);
             $data->image = $imagename;
         }
 

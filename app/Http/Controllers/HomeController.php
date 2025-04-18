@@ -9,14 +9,14 @@ use App\Models\Contact;
 
 class HomeController extends Controller
 {
-    public function room_details($id){
-        $room = Event::find($id);
-        return View ('home.rooms_details',compact('room'));
+    public function event_details($id){
+        $event = Event::find($id);
+        return View ('home.event_details',compact('event'));
     }
 
     public function add_booking(Request $request, $id){
         $data= new Booking();
-        $data->room_id = $id;
+        $data->event_id = $id;
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;

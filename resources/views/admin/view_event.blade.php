@@ -42,8 +42,8 @@
                                 <th class="th_deg">Event title</th>  
                                 <th class="th_deg">Description</th> 
                                 <th class="th_deg">price</th> 
-                                <th class="th_deg">Wifi</th> 
-                                <th class="th_deg">Room type</th> 
+                                <th class="th_deg">lieu</th> 
+                                <th class="th_deg">event type</th> 
                                 <th class="th_deg">Image</th> 
                                 <th class="th_deg">Delete</th>   
                                 <th class="th_deg">Update</th>          
@@ -51,20 +51,20 @@
 
                     @foreach($data as $item)
                     <tr>
-                        <td>{{ $item->room_title }}</td>  
+                        <td>{{ $item->event_title }}</td>  
                         <td>{!! Str::limit( $item->description, 150)!!}</td> 
                         <td>{{ $item->price }}</td> 
-                        <td>{{ $item->wifi }}</td> 
-                        <td>{{ $item->room_type }}</td> 
+                        <td>{{ $item->lieu }}</td> 
+                        <td>{{ $item->event_type }}</td> 
                         <td>
-                            <img width="100" src="room/{{ $item->image }}" alt="">
+                            <img width="100" src="event/{{ $item->image }}" alt="">
                         </td> 
                         <td>
-                            <a onclick="return confirm('are you sure to delete')" href="{{url('room_delete', $item->id)}}" class="btn btn-danger">Delete</a>
+                            <a onclick="return confirm('are you sure to delete')" href="{{url('event_delete', $item->id)}}" class="btn btn-danger">Delete</a>
                         </td>
 
                         <td>
-                            <a href="{{url('room_update', $item->id)}}" class="btn btn-warning">Update</a>
+                            <a href="{{url('event_update', $item->id)}}" class="btn btn-warning">Update</a>
                         </td>
                     </tr>
                 @endforeach

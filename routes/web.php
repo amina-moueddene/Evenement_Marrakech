@@ -31,21 +31,21 @@ Route::post('/logout', function () {
 
 route::get('/home',[AdminController::class,'index'])->name('home');
 
-route::get('/create_room',[AdminController::class,'create_room']);
+route::get('/create_event',[AdminController::class,'create_event']);
 
 
-route::post('/add_room',[AdminController::class,'add_room']);
+route::post('/add_event',[AdminController::class,'add_event']);
 
-route::get('/view_room',[AdminController::class,'view_room']);
+route::get('/view_event',[AdminController::class,'view_event']);
 
-route::get('/room_delete/{id}',[AdminController::class,'room_delete']);
+route::get('/event_delete/{id}',[AdminController::class,'event_delete']);
 
-route::get('/room_update/{id}',[AdminController::class,'room_update']);
+route::get('/event_update/{id}',[AdminController::class,'event_update']);
 
-route::post('/edit_room/{id}',[AdminController::class,'edit_room']);
+route::post('/edit_event/{id}',[AdminController::class,'edit_event']);
 
 
-route::get('/room_details/{id}',[HomeController::class,'room_details']);
+route::get('/event_details/{id}',[HomeController::class,'event_details']);
 
 route::post('/add_booking/{id}',[HomeController::class,'add_booking']);
 

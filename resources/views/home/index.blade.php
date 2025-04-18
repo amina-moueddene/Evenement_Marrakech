@@ -31,7 +31,7 @@
       @include('home.about')
 
       <!-- end about -->
-      @include('home.room')
+      @include('home.event')
 
       @include('home.gallary')
 

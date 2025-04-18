@@ -59,7 +59,7 @@
                                 <th class="th_deg">Arrival Date</th> 
                                 <th class="th_deg">leaving Date</th> 
                                 <th class="th_deg">Status</th> 
-                                <th class="th_deg">Room title</th> 
+                                <th class="th_deg">event title</th> 
                                 <th class="th_deg">Price</th> 
                                 <th class="th_deg">Image</th> 
                                 <th class="th_deg">Delete</th> 
@@ -71,7 +71,7 @@
 
                     @foreach($data as $item)
                     <tr>
-                        <td>{{ $item->room_id}}</td>  
+                        <td>{{ $item->event_id}}</td>  
                         <td>{{ $item->name}}</td> 
                         <td>{{ $item->email }}</td> 
                         <td>{{ $item->phone}}</td> 
@@ -89,10 +89,10 @@
 
                             
                         </td> 
-                        <td>{{ $item->room->room_title}}</td> 
-                        <td>{{$item->room->price}}</td> 
+                        <td>{{ $item->event->event_title}}</td> 
+                        <td>{{$item->event->price}}</td> 
                         <td>
-                            <img src="/room/{{ $item->room->image}}" alt="">
+                            <img src="/event/{{ $item->event->image}}" alt="">
                          </td> 
                          <td>
                              <a  onclick="return confirm('are you sure to delete')" class="btn btn-danger" href="{{url('delete_booking', $item->id)}}">Delele</a>

@@ -21,18 +21,18 @@
             border-radius: 4px;
         }
 
-        .bed_room h2 {
+        .bed_event h2 {
             color: #333;
             font-size: 28px;
             margin-bottom: 15px;
         }
 
-        .bed_room p {
+        .bed_event p {
             line-height: 1.6;
             color: #555;
         }
 
-        .bed_room h3, .bed_room h4 {
+        .bed_event h3, .bed_event h4 {
             color: #555;
             margin-bottom: 10px;
         }
@@ -112,8 +112,8 @@
         @include('home.header')
     </header>
 
-    <!-- our_room -->
-    <div class="our_room py-5">
+    <!-- our_event -->
+    <div class="our_event py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -126,27 +126,27 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <div id="serv_hover" class="room mb-4">
+                    <div id="serv_hover" class="event mb-4">
                         <div class="event-image mb-4">
-                            <figure><img src="{{$room->image}}" alt="{{$room->room_title}}"/></figure>
+                            <figure><img src="{{$event->image}}" alt="{{$event->event_title}}"/></figure>
                         </div>
-                        <div class="bed_room">
-                            <h2>{{$room->room_title}}</h2>
-                            <p>{{$room->description}}</p>
+                        <div class="bed_event">
+                            <h2>{{$event->event_title}}</h2>
+                            <p>{{$event->description}}</p>
 
                             <div class="event-details mt-4">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4><i class="fas fa-map-marker-alt me-2" style="color: #E5C100;"></i> Location: {{$room->lieu}}</h4>
+                                        <h4><i class="fas fa-map-marker-alt me-2" style="color: #E5C100;"></i> Location: {{$event->lieu}}</h4>
                                     </div>
                                     <div class="col-md-6">
-                                        <h4><i class="fas fa-tag me-2" style="color: #E5C100;"></i> Event Type: {{$room->room_type}}</h4>
+                                        <h4><i class="fas fa-tag me-2" style="color: #E5C100;"></i> Event Type: {{$event->event_type}}</h4>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-6">
-                                        <h3><i class="fas fa-dollar-sign me-2" style="color: #E5C100;"></i> Price: {{$room->price}}</h3>
+                                        <h3><i class="fas fa-dollar-sign me-2" style="color: #E5C100;"></i> Price: {{$event->price}}</h3>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="date-container">
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="date-info">
                                                 <span class="date-label">Event Date</span>
-                                                <h3 class="date-value">{{ \Carbon\Carbon::parse($room->date)->format('F j, Y') }}</h3>
+                                                <h3 class="date-value">{{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                             @endforeach
                         @endif
 
-                        <form action="{{url('add_booking',$room->id)}}" method="POST">
+                        <form action="{{url('add_booking',$event->id)}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name"><i class="fas fa-user me-2"></i>Name</label>
@@ -224,7 +224,7 @@
             </div>
         </div>
     </div>
-    <!-- end our_room -->
+    <!-- end our_event -->
 
     @include('home.footer')
 

@@ -31,11 +31,11 @@
 
                 <div class="dev_center">
                     <h1 style="font-size:30px;font-weight:bold ">Update Event</h1>
-                    <form action="{{url('edit_room',$data->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{url('edit_event',$data->id)}}" method="post" enctype="multipart/form-data">
                     @csrf    
                     <div class="dev_deg">
-                            <label for="" >Room Title</label>
-                            <input type="text" name="title" value="{{$data->room_title}}">
+                            <label for="" >event Title</label>
+                            <input type="text" name="title" value="{{$data->event_title}}">
                         </div>
 
                         <div class="dev_deg">
@@ -52,9 +52,9 @@
                         </div>
 
                         <div class="dev_deg">
-                            <label for="">Room type</label>
+                            <label for="">event type</label>
                            <select name="type" id="">
-                                 <option selected value="{{$data->room_type}}"> {{$data->room_type}}</option>
+                                 <option selected value="{{$data->event_type}}"> {{$data->event_type}}</option>
                                  <option value="regular">Regular</option>
                                  <option value="premuim">Premuim</option>
                                  <option value="deluxe">Deluxe</option>
@@ -62,9 +62,9 @@
                         </div>
 
                         <div class="dev_deg">
-                            <label for="">Wifi</label>
-                           <select name="wifi" id="">
-                                 <option selected value="{{$data->wifi}}"> {{$data->wifi}}</option>
+                            <label for="">lieu</label>
+                           <select name="lieu" id="">
+                                 <option selected value="{{$data->lieu}}"> {{$data->lieu}}</option>
                                  <option value="yes">Yes</option>
                                  <option value="no">No</option>
                            </select>
@@ -73,7 +73,7 @@
 
                         <div class="dev_deg" >
                             <label for="">Current image</label>
-                           <img  style=" margin:auto;" width="100" src="/room/{{$data->image}}" alt="">
+                           <img  style=" margin:auto;" width="100" src="/event/{{$data->image}}" alt="">
                         </div>
 
 
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="dev_deg">
-                            <input class="btn btn-primary" type="submit" value="Update Room" >
+                            <input class="btn btn-primary" type="submit" value="Update event" >
                         </div>
                     </form>
                 </div>
