@@ -12,6 +12,7 @@ jobs:
 
     services:
       mysql:
+      name: mysql
         image: mysql:8.0
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
