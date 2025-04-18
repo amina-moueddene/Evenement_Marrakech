@@ -21,18 +21,18 @@
             border-radius: 4px;
         }
 
-        .bed_event h2 {
+        .bed_room h2 {
             color: #333;
             font-size: 28px;
             margin-bottom: 15px;
         }
 
-        .bed_event p {
+        .bed_room p {
             line-height: 1.6;
             color: #555;
         }
 
-        .bed_event h3, .bed_event h4 {
+        .bed_room h3, .bed_room h4 {
             color: #555;
             margin-bottom: 10px;
         }
@@ -112,41 +112,41 @@
         @include('home.header')
     </header>
 
-    <!-- our_event -->
-    <div class="our_event py-5">
+    <!-- our_room -->
+    <div class="our_room py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage text-center mb-5">
-                        <h2>Event Details</h2>
-                        <p>Discover and book your perfect event experience</p>
-                    </div>
-                </div>
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2>Our Room</h2>
+                     <p>Lorem Ipsum available, but the majority have suffered </p>
+                  </div>
+               </div>
             </div>
 
             <div class="row">
                 <div class="col-md-8">
-                    <div id="serv_hover" class="event mb-4">
+                    <div id="serv_hover" class="room mb-4">
                         <div class="event-image mb-4">
-                            <figure><img src="{{$event->image}}" alt="{{$event->event_title}}"/></figure>
+                            <figure><img src="{{$room->image}}" alt="{{$room->room_title}}"/></figure>
                         </div>
-                        <div class="bed_event">
-                            <h2>{{$event->event_title}}</h2>
-                            <p>{{$event->description}}</p>
+                        <div class="bed_room">
+                            <h2>{{$room->room_title}}</h2>
+                            <p>{{$room->description}}</p>
 
                             <div class="event-details mt-4">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4><i class="fas fa-map-marker-alt me-2" style="color: #E5C100;"></i> Location: {{$event->lieu}}</h4>
+                                        <h4><i class="fas fa-map-marker-alt me-2" style="color: #E5C100;"></i> Location: {{$room->lieu}}</h4>
                                     </div>
                                     <div class="col-md-6">
-                                        <h4><i class="fas fa-tag me-2" style="color: #E5C100;"></i> Event Type: {{$event->event_type}}</h4>
+                                        <h4><i class="fas fa-tag me-2" style="color: #E5C100;"></i> Event Type: {{$room->room_type}}</h4>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-6">
-                                        <h3><i class="fas fa-dollar-sign me-2" style="color: #E5C100;"></i> Price: {{$event->price}}</h3>
+                                        <h3><i class="fas fa-dollar-sign me-2" style="color: #E5C100;"></i> Price: {{$room->price}}</h3>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="date-container">
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="date-info">
                                                 <span class="date-label">Event Date</span>
-                                                <h3 class="date-value">{{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}</h3>
+                                                <h3 class="date-value">{{ \Carbon\Carbon::parse($room->date)->format('F j, Y') }}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -165,26 +165,40 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="booking-form">
-                        <h1 class="booking-title">Book This Event</h1>
+               <div class="col-md-4">
 
-                        @if(session()->has('message'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session()->get('message') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
+                  <h1 style="font-size: 40px!important;">Book room</h1>
 
-                        @if($errors)
-                            @foreach($errors->all() as $error)
-                                <div class="alert alert-danger">
-                                    {{$error}}
-                                </div>
-                            @endforeach
-                        @endif
 
-                        <form action="{{url('add_booking',$event->id)}}" method="POST">
+
+                  <div>
+                     @if(session()->has('message'))
+
+                   <div class="alert alert-success">
+
+                   <button type="button" class="close" data-bs-dismiss="alert">
+                     X
+                   </button>
+                   {{ session()->get('message') }}
+
+                   </div>
+                
+                     @endif
+                  </div>
+
+
+                   
+                  @if($errors)
+
+                  @foreach($errors->all() as $errors)
+                  <li style="color: red;">
+                     {{$errors}}
+                  </li>
+
+                  @endforeach
+                  @endif
+
+                        <form action="{{url('add_booking',$room->id)}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name"><i class="fas fa-user me-2"></i>Name</label>
@@ -195,56 +209,72 @@
                                     required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="email"><i class="fas fa-envelope me-2"></i>Email</label>
-                                <input type="email" id="email" name="email" class="form-control"
-                                    @if(Auth::id())
-                                        value="{{Auth::user()->email}}"
-                                    @endif
-                                    required>
-                            </div>
+                  <div>
+                     <label for="">Email</label>
+                     <input type="text" name="email" 
+                     @if(Auth::id())
+                     value="{{Auth::user()->email}}"
+                     @endif
+                     >
+                  </div>
+                  <div>
+                     <label for="">Phone</label>
+                     <input type="text" name="phone"
+                      
+                     @if(Auth::id())
+                     value="{{Auth::user()->phone}}"
+                     @endif
+                     >
+                  </div>
 
-                            <div class="form-group">
-                                <label for="phone"><i class="fas fa-phone me-2"></i>Phone</label>
-                                <input type="tel" id="phone" name="phone" class="form-control"
-                                    @if(Auth::id())
-                                        value="{{Auth::user()->phone}}"
-                                    @endif
-                                    required>
-                            </div>
+                  <div>
+                     <label for="">Start date</label>
+                     <input type="date" name="startDate" id="startDate">
+                  </div>
 
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary btn-book">
-                                    <i class="fas fa-ticket-alt me-2"></i> Book Event
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                  <div>
+                     <label for="">End date</label>
+                     <input type="date" name="endDate" id="endDate">
+                  </div>
+
+                  <div style="padding-top: 20px;">
+                     <input style="background-color:#E5C100" type="submit" class="btn btn-primary" value="Book Room">
+                  </div>
+
+                  </form>
+               </div>
+
+
+
+
             </div>
         </div>
     </div>
-    <!-- end our_event -->
+    <!-- end our_room -->
 
-    @include('home.footer')
+      @include('home.footer')
+      <!-- Javascript files-->
+      
 
-    <!-- Javascript files-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function(){
+   var dtToday = new Date();
+   var month = dtToday.getMonth() + 1;
+   var day = dtToday.getDate();
+   var year = dtToday.getFullYear();
+   if(month < 10)
+       month = '0' + month.toString();
+       if(day < 10) 
+       day = '0' + day.toString();
+       var maxDate = year + '-' + month + '-' + day;
+       $('#startDate').attr('min', maxDate);
+         $('#endDate').attr('min', maxDate);
+});
 
-    <script type="text/javascript">
-        $(function(){
-            var dtToday = new Date();
-            var month = dtToday.getMonth() + 1;
-            var day = dtToday.getDate();
-            var year = dtToday.getFullYear();
-            if(month < 10)
-                month = '0' + month.toString();
-            if(day < 10)
-                day = '0' + day.toString();
-            var maxDate = year + '-' + month + '-' + day;
-            $('#startDate').attr('min', maxDate);
-            $('#endDate').attr('min', maxDate);
-        });
-    </script>
-</body>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+
+   </body>
 </html>
