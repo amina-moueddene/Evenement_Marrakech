@@ -21,55 +21,58 @@ jobs:
         options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: mbstring, dom, fileinfo, pdo_mysql
-          coverage: none
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, dom, fileinfo, pdo_mysql, bcmath, intl
+        coverage: none
 
-      - name: Install dependencies
-        run: composer install --no-progress --prefer-dist
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist
 
-      - name: Configure environment
-        run: |
-          if [ -f .env.example ]; then
-            cp .env.example .env
-          else
-            echo "APP_NAME=Laravel" > .env
-            echo "APP_ENV=local" >> .env
-            echo "APP_URL=http://localhost" >> .env
-            echo "DB_CONNECTION=mysql" >> .env
-            echo "DB_HOST=127.0.0.1" >> .env
-            echo "DB_PORT=3306" >> .env
-            echo "DB_DATABASE=eventmarrakech" >> .env
-            echo "DB_USERNAME=root" >> .env
-            echo "DB_PASSWORD=" >> .env
+    - name: Configure environment
+      run: |
+        if [ -f .env.example ]; then
+          cp .env.example .env
+        else
+          echo "APP_NAME=Laravel" > .env
+          echo "APP_ENV=testing" >> .env
+          echo "APP_URL=http://localhost" >> .env
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=mysql" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=eventmarrakech" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=" >> .env
+        fi
+
+    - name: Generate application key
+      run: php artisan key:generate
+
+    - name: Clear configuration cache
+      run: php artisan config:clear
+
+    - name: Wait for MySQL to be ready
+      run: |
+        for i in {1..20}; do
+          if mysqladmin ping --host=mysql --silent; then
+            echo "MySQL is ready!"
+            break
           fi
+          echo "Waiting for MySQL..."
+          sleep 5
+        done
 
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {1..20}; do
-            if mysqladmin ping --host=127.0.0.1 --silent; then
-              echo "MySQL is ready!"
-              break
-            fi
-            echo "Waiting for MySQL..."
-            sleep 5
-          done
+    - name: Create database
+      run: |
+        mysql -u root -h mysql -e "CREATE DATABASE IF NOT EXISTS eventmarrakech;"
 
-      - name: Create database
-        run: |
-          mysql -u root -h 127.0.0.1 -P 3306 -e "CREATE DATABASE IF NOT EXISTS eventmarrakech;"
+    - name: Run migrations
+      run: php artisan migrate:fresh --force
 
-      - name: Generate application key
-        run: php artisan key:generate
-
-      - name: Run migrations
-        run: php artisan migrate:fresh --force
-
-      - name: Execute tests
-        run: php artisan test
+    - name: Execute tests
+      run: php artisan test
