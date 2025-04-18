@@ -45,7 +45,7 @@ jobs:
           echo "DB_CONNECTION=mysql" >> .env
           echo "DB_HOST=mysql" >> .env
           echo "DB_PORT=3306" >> .env
-          echo "DB_DATABASE=eventmarrakech" >> .env
+          echo "DB_DATABASE= eventmarrakech" >> .env
           echo "DB_USERNAME=root" >> .env
           echo "DB_PASSWORD=" >> .env
         fi
@@ -63,7 +63,7 @@ jobs:
 
     - name: Create database
       run: |
-        mysql -u root -h mysql -e "CREATE DATABASE IF NOT EXISTS eventmarrakech;"
+        mysql -u root -h mysql -e "CREATE DATABASE IF NOT EXISTS eventmarrakech"
 
     - name: Run migrations
       run: php artisan migrate:fresh --force
