@@ -18,7 +18,11 @@ jobs:
           MYSQL_DATABASE: eventmarrakech
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
 
     steps:
     - name: Checkout code
@@ -59,17 +63,13 @@ jobs:
     - name: Wait for MySQL to be ready
       run: |
         for i in {1..20}; do
-          if mysqladmin ping --host=mysql --silent; then
-            echo "MySQL is ready!"
+          if mysql -u root -h mysql -e "SELECT 1;" > /dev/null 2>&1; then
+            echo "✅ MySQL is ready"
             break
           fi
-          echo "Waiting for MySQL..."
-          sleep 5
+          echo "⏳ Waiting for MySQL ($i)..."
+          sleep 3
         done
-
-    - name: Create database
-      run: |
-        mysql -u root -h mysql -e "CREATE DATABASE IF NOT EXISTS eventmarrakech;"
 
     - name: Run migrations
       run: php artisan migrate:fresh --force
