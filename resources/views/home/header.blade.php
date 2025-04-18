@@ -6,39 +6,19 @@
                 <div class="full">
                     <div class="center-desk">
                         <div class="logo">
-<<<<<<< HEAD
-
-                            <a href="/"><img src="images/logo.png" alt="#" /></a>
-
                             <a href="{{ url('/') }}"><img src="images/logo.png" alt="#" /></a>
-
-=======
-                            <a href="{{ url('/') }}"><img src="images/logo.png" alt="#" /></a>
->>>>>>> parent of 2f48760 (Merge pull request #16 from MohAitMesskine/CreateEvents)
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-<<<<<<< HEAD
- 
-                <nav class="navigation navbar navbar-expand-md navbar-dark">
-
                 <nav class="navigation navbar navbar-expand-md navbar-dark ">
-
-=======
-                <nav class="navigation navbar navbar-expand-md navbar-dark ">
->>>>>>> parent of 2f48760 (Merge pull request #16 from MohAitMesskine/CreateEvents)
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
-<<<<<<< HEAD
-
-=======
                             <li class="nav-item active">
->>>>>>> parent of 2f48760 (Merge pull request #16 from MohAitMesskine/CreateEvents)
                                 <a class="nav-link" href="{{ url('/') }}">Home</a>
                             </li>
                             <li class="nav-item">
@@ -79,10 +59,6 @@
                                     </li>
                                 @endif
                             @endauth
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 2f48760 (Merge pull request #16 from MohAitMesskine/CreateEvents)
                         </ul>
                     </div>
                 </nav>

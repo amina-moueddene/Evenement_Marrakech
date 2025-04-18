@@ -13,8 +13,7 @@
         <ul class="list-unstyled">
                 <li  class="active"><a style="color: white;" href="index.html"> <i class="icon-home"></i>Home </a></li>
           
-                <li><a style="color: white;" href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> 
-                  <i class="icon-windows"></i>Event Manage </a>
+                <li><a style="color: white;" href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Event Manage </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a style="color: white;" href="{{url('create_event')}}">Add Event</a></li>
                     <li><a  style="color: white;" href="{{url('view_event')}}">View Event</a></li>

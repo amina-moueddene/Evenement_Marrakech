@@ -59,7 +59,7 @@
       color: var(--text-dark);
       font-size: 1rem;
     }
-
+    input[type="date"],
     input[type="text"],
     input[type="number"],
     select,
@@ -72,14 +72,14 @@
       transition: all 0.3s ease;
       background-color: #fff;
     }
-
+    input[type="date"],
     input[type="text"]:focus,
     input[type="number"]:focus,
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+      /* border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2); */
     }
 
     textarea {
@@ -182,34 +182,38 @@
             
             <div class="form-group">
               <label for="event-title">Event Title</label>
-              <input type="text" id="event-title" name="title" placeholder="Enter event title">
+              <input type="text" id="event-title" name="title" style="color: #000" st placeholder="Enter event title">
             </div>
 
             <div class="form-group">
               <label for="event-description">Description</label>
-              <textarea id="event-description" name="description" placeholder="Enter event description"></textarea>
+              <textarea id="event-description" name="description"  style="color: #000"placeholder="Enter event description"></textarea>
             </div>
 
             <div class="form-group">
               <label for="event-price">Price</label>
-              <input type="number" id="event-price" name="price" placeholder="Enter event price">
+              <input type="number" id="event-price" name="price" style="color: #000" placeholder="Enter event price">
+            </div>
+
+            <div class="form-group">
+              <label for="event-date">Date</label>
+              <input type="date" id="event-date" name="date" style="color: #000" >
             </div>
 
             <div class="form-group">
               <label for="event-type">Event Type</label>
-              <select id="event-type" name="type">
-                <option value="regular">Regular</option>
-                <option value="premuim">Premium</option>
-                <option value="deluxe">Deluxe</option>
+              <select id="event-type"  style="color: #000"  name="type">
+                <option value="musical">Musical</option>
+                <option value="culturel">Culturel</option>
+                <option value="gastronomique">Gastronomique</option>
+                <option value="sportif">Sportif </option>
+                <option value="artistique">Artistique </option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="event-lieu">Lieu</label>
-              <select id="event-lieu" name="lieu">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
+              <label for="lieu">Place</label>
+                 <input type="text" id="event-place" name="lieu" style="color: #000" placeholder="Enter event place">
             </div>
 
             <div class="form-group">

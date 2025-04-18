@@ -41,7 +41,8 @@
                     <tr>
                                 <th class="th_deg">Event title</th>  
                                 <th class="th_deg">Description</th> 
-                                <th class="th_deg">price</th> 
+                                <th class="th_deg">price</th>
+                                <th class="th_deg">Date</th>  
                                 <th class="th_deg">lieu</th> 
                                 <th class="th_deg">event type</th> 
                                 <th class="th_deg">Image</th> 
@@ -54,6 +55,7 @@
                         <td>{{ $item->event_title }}</td>  
                         <td>{!! Str::limit( $item->description, 150)!!}</td> 
                         <td>{{ $item->price }}</td> 
+                        <td>{{ $item->date }}</td> 
                         <td>{{ $item->lieu }}</td> 
                         <td>{{ $item->event_type }}</td> 
                         <td>

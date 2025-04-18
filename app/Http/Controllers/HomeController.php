@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Room;
+use App\Models\event;
 use App\Models\Booking;
 use App\Models\Contact;
 
@@ -11,8 +11,10 @@ use App\Models\Contact;
 class HomeController extends Controller
 {
     public function event_details($id){
-        $room = Event::find($id);
-        return View ('home.rooms_details',compact('room'));
+
+        $event = event::find($id);
+        return View ('home.event_details',compact('event'));
+       
     }
 
     public function add_booking(Request $request, $id){
@@ -29,26 +31,20 @@ class HomeController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-
-
-
-        $startDate = $request->startDate;
-        $endDate = $request->endDate;
-        $isbooked= Booking::where('room_id',$id)
-        ->where('start_date','<=',$endDate)
-        ->where('end_date','>=',$startDate)->exists();
-        if($isbooked){
-            return redirect()->back()->with('message','Room already booked please choose another date');
-        }
+        // $isbooked= Booking::where('event_id',$id)
+        // ->where('start_date','<=',$endDate)
+        // ->where('end_date','>=',$startDate)->exists();
+        // if($isbooked){
+        //     return redirect()->back()->with('message','event already booked please choose another date');
+        // }
      
-        else{
-            $data->start_date = $request->startDate;
-            $data->end_date = $request->endDate;
+        // else{
+        //     $data->start_date = $request->startDate;
+        //     $data->end_date = $request->endDate;
             
         $data->save();
         return redirect()->back()->with('message','Booking added successfully');
        
-        }
     }
 
 
@@ -63,9 +59,7 @@ class HomeController extends Controller
 
             return redirect()->back()->with('message','Message sent successfully');
 
-
             
     }
-
 
 }

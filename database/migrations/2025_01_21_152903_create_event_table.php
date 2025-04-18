@@ -11,22 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('event_title')->nullable();
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->string('price')->nullable();
-<<<<<<< HEAD:database/migrations/2025_01_21_152903_create_events_table.php
+            $table->string('date')->nullable();
             $table->string('lieu')->nullable();
             $table->string('event_type')->nullable();
-            $table->date('date')->nullable();
-=======
-            $table->string('wifi')->default('yes');
-            $table->string('room_type')->nullable();
 
 
->>>>>>> parent of 2f48760 (Merge pull request #16 from MohAitMesskine/CreateEvents):database/migrations/2025_01_21_152903_create_rooms_table.php
             $table->timestamps();
         });
     }
@@ -36,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('events');
     }
 };
