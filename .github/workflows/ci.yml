@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   tests:
@@ -13,7 +14,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes' # Autorise l'accès root sans mot de passe
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           MYSQL_DATABASE: laravel_test
         ports:
           - 3306:3306
@@ -42,7 +43,7 @@ jobs:
           echo "APP_ENV=local" >> .env
           echo "APP_URL=http://localhost" >> .env
           echo "DB_CONNECTION=mysql" >> .env
-          echo "DB_HOST=mysql" >> .env # Modifié pour utiliser le nom du service MySQL
+          echo "DB_HOST=mysql" >> .env
           echo "DB_PORT=3306" >> .env
           echo "DB_DATABASE=laravel_test" >> .env
           echo "DB_USERNAME=root" >> .env
@@ -51,13 +52,13 @@ jobs:
 
     - name: Wait for MySQL to be ready
       run: |
-        for i in {1..10}; do
+        for i in {1..20}; do
           if mysqladmin ping --host=mysql --silent; then
             echo "MySQL is ready!"
             break
           fi
           echo "Waiting for MySQL..."
-          sleep 3
+          sleep 5
         done
 
     - name: Create database

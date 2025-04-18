@@ -19,11 +19,11 @@ class HomeController extends Controller
 
     public function add_booking(Request $request, $id){
 
-        $request->validate([
+        // $request->validate([
           
-            'startDate' => 'required|date',
-            'endDate' => 'date|after :: startDate',
-        ]);
+        //     'startDate' => 'required|date',
+        //     'endDate' => 'date|after :: startDate',
+        // ]);
 
 
         $data= new Booking();
