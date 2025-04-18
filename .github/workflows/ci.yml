@@ -17,7 +17,7 @@ jobs:
           MYSQL_DATABASE: laravel_test
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - name: Checkout code
@@ -42,16 +42,27 @@ jobs:
           echo "APP_ENV=local" >> .env
           echo "APP_URL=http://localhost" >> .env
           echo "DB_CONNECTION=mysql" >> .env
-          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_HOST=mysql" >> .env # Modifié pour utiliser le nom du service MySQL
           echo "DB_PORT=3306" >> .env
           echo "DB_DATABASE=laravel_test" >> .env
           echo "DB_USERNAME=root" >> .env
           echo "DB_PASSWORD=" >> .env
         fi
 
+    - name: Wait for MySQL to be ready
+      run: |
+        for i in {1..10}; do
+          if mysqladmin ping --host=mysql --silent; then
+            echo "MySQL is ready!"
+            break
+          fi
+          echo "Waiting for MySQL..."
+          sleep 3
+        done
+
     - name: Create database
       run: |
-        mysql -u root -e "CREATE DATABASE IF NOT EXISTS laravel_test;"
+        mysql -u root -h mysql -e "CREATE DATABASE IF NOT EXISTS laravel_test;"
 
     - name: Run migrations
       run: php artisan migrate:fresh --force
