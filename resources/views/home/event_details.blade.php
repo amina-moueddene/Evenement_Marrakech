@@ -45,7 +45,6 @@
                <div class="col-md-12">
                   <div class="titlepage">
                      <h2>Our event</h2>
-                     <p>Lorem Ipsum available, but the majority have suffered </p>
                   </div>
                </div>
             </div>
@@ -69,75 +68,49 @@
                </div>
 
 
-               <div class="col-md-4">
+               <!-- Formulaire de réservation -->
+      <div class="col-md-4">
+         <div class="card shadow-sm p-4">
+            <h4 class="mb-4 text-center">📅 Réserver cet événement</h4>
 
-                  <h1 style="font-size: 40px!important;">Book event</h1>
-
-
-
-                  <div>
-                     @if(session()->has('message'))
-
-                   <div class="alert alert-success">
-
-                   <button type="button" class="close" data-bs-dismiss="alert">
-                     X
-                   </button>
-                   {{ session()->get('message') }}
-
-                   </div>
-                
-                     @endif
-                  </div>
-
-
-                   
-                  @if($errors)
-
-                  @foreach($errors->all() as $errors)
-                  <li style="color: red;">
-                     {{$errors}}
-                  </li>
-
-                  @endforeach
-                  @endif
-
-                  <form action="{{url('add_booking',$event->id)}}" method="POST">
-                  @csrf
-                  <div>
-                     <label for="">Name</label>
-                     <input type="text" name="name" 
-                     @if(Auth::id())
-                     value="{{Auth::user()->name}}"
-                     @endif
-                     >
-                  </div>
-
-                  <div>
-                     <label for="">Email</label>
-                     <input type="text" name="email" 
-                     @if(Auth::id())
-                     value="{{Auth::user()->email}}"
-                     @endif
-                     >
-                  </div>
-                  <div>
-                     <label for="">Phone</label>
-                     <input type="text" name="phone"
-                      
-                     @if(Auth::id())
-                     value="{{Auth::user()->phone}}"
-                     @endif
-                     >
-                  </div>
-
-
-                  <div style="padding-top: 20px;">
-                     <input style="background-color:#E5C100" type="submit" class="btn btn-primary" value="Book event">
-                  </div>
-
-                  </form>
+            @if(session()->has('message'))
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ session()->get('message') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                </div>
+            @endif
+
+            @if($errors)
+               @foreach($errors->all() as $error)
+                  <div class="alert alert-danger">{{ $error }}</div>
+               @endforeach
+            @endif
+
+            <form action="{{ url('add_booking', $event->id) }}" method="POST">
+               @csrf
+               <div class="mb-3">
+                  <label class="form-label">Nom</label>
+                  <input type="text" name="name" class="form-control" 
+                  @if(Auth::id()) value="{{ Auth::user()->name }}" @endif>
+               </div>
+
+               <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control"
+                  @if(Auth::id()) value="{{ Auth::user()->email }}" @endif>
+               </div>
+
+               <div class="mb-3">
+                  <label class="form-label">Téléphone</label>
+                  <input type="text" name="phone" class="form-control"
+                  @if(Auth::id()) value="{{ Auth::user()->phone }}" @endif>
+               </div>
+
+               <button type="submit" class="btn btn-warning w-100">Réserver</button>
+            </form>
+         </div>
+      </div>
+
 
 
 
