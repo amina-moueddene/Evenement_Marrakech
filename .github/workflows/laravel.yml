@@ -12,6 +12,20 @@ jobs:
   laravel-tests:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: eventmanagment
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
     # 1. Vérifier le code source
     - name: Checkout code
@@ -32,17 +46,18 @@ jobs:
 
     # 4. Configurer l'environnement de test
     - name: Setup environment
-      run: cp .env.example .env
+      run: |
+        cp .env.example .env
+        php artisan config:clear
 
-    # 5. Générer la clé d'application
+    # 5. Configurer la base de données MySQL
+    - name: Setup MySQL database
+      run: |
+        php artisan migrate --force
+
+    # 6. Générer la clé d'application
     - name: Generate application key
       run: php artisan key:generate
-
-    # 6. Configurer la base de données SQLite pour les tests
-    - name: Setup SQLite database
-      run: |
-        touch database/database.sqlite
-        php artisan migrate --force
 
     # 7. Exécuter les tests
     - name: Run tests
