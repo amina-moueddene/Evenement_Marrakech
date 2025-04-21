@@ -18,7 +18,7 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD:
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: eventmanagment
         options: >-
           --health-cmd="mysqladmin ping --silent"
@@ -50,15 +50,19 @@ jobs:
         cp .env.example .env
         php artisan config:clear
 
-    # 5. Configurer la base de données MySQL
+    # 5. Attendre que MySQL soit prêt
+    - name: Wait for MySQL
+      run: sleep 15
+
+    # 6. Configurer la base de données MySQL
     - name: Setup MySQL database
       run: |
-        php artisan migrate --force
+        php artisan migrate:fresh --force
 
-    # 6. Générer la clé d'application
+    # 7. Générer la clé d'application
     - name: Generate application key
       run: php artisan key:generate
 
-    # 7. Exécuter les tests
+    # 8. Exécuter les tests
     - name: Run tests
       run: php artisan test
