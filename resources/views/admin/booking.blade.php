@@ -4,37 +4,30 @@
  @include('admin.css')
 
  <style>
-    .table_deg{
-    border: 2px white solid;
-    margin: auto;
-    width: 100%;
-    text-align: center;
-    margin-top: 30px;
+    table.table thead th {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px;
+        font-weight: 600;
     }
-    .th_deg{
-        background-color: #E5C100;
-        padding: 3px;
+
+    table.table tbody td {
+        vertical-align: middle;
+        text-align: center;
         font-size: 13px;
-        color: black;
-
-    }
-    tr{
-        border: 2px white solid;
-    }
-    td{
-        padding: 5px;
-        font-size: 12px;
-        color: white;
-    
-    }
-    .btn{
-        padding: 3px;
-        font-size: 15px;
-        margin: 2px;
     }
 
+    .btn {
+        border-radius: 6px;
+    }
 
+    .badge {
+        font-size: 13px;
+        padding: 6px 10px;
+        border-radius: 12px;
+    }
 </style>
+
 
       </head>
   <body>
@@ -44,83 +37,55 @@
 
 
   
-  <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
+  <div class="container-fluid px-4" style="background-color: white; min-height: 100vh; padding-top: 30px;">
+    <h2 style="color: rgb(234, 88, 12); font-weight: bold;">Liste des Réservations</h2>
 
-          <table class="table_deg">
-                    <tr>
-
-                                    
-                                <th class="th_deg">Event_id</th>  
-                                <th class="th_deg">Customer name</th> 
-                                <th class="th_deg">Email</th> 
-                                <th class="th_deg">Phone</th> 
-                                <th class="th_deg">Arrival Date</th> 
-                                <th class="th_deg">leaving Date</th> 
-                                <th class="th_deg">Status</th> 
-                                <th class="th_deg">event title</th> 
-                                <th class="th_deg">Price</th> 
-                                <th class="th_deg">Image</th> 
-                                <th class="th_deg">Delete</th> 
-                                <th class="th_deg">Status Update</th> 
-
-            
-                    </tr>
-
-
-                    @foreach($data as $item)
-                    <tr>
-                        <td>{{ $item->event_id}}</td>  
-                        <td>{{ $item->name}}</td> 
-                        <td>{{ $item->email }}</td> 
-                        <td>{{ $item->phone}}</td> 
-                        <td>{{ $item->start_date}}</td> 
-                        <td>{{ $item->end_date}}</td> 
-                        <td>
-
-                            @if($item->status == 'approve')
-                            <span style="color: #E5C100;">Approved</span>
-                            @elseif($item->status == 'reject')
-                            <span style="color: red;">Rejected</span>
-                            @else
-                            <span style="color: yellow;">Waiting</span>
-                            @endif
-
-                            
-                        </td> 
-                        <td>{{ $item->event->event_title}}</td> 
-                        <td>{{$item->event->price}}</td> 
-                        <td>
-                            <img src="/event/{{ $item->event->image}}" alt="">
-                         </td> 
-                         <td>
-                             <a  onclick="return confirm('are you sure to delete')" class="btn btn-danger" href="{{url('delete_booking', $item->id)}}">Delele</a>
-                        </td> 
-
-                        <td>
-                            <span style="padding-bottom: 5px;">
-                             <a  class="btn btn-success" href="{{url('approve_book', $item->id)}}">Approve</a>
-
-                            </span>
-                             <a class="btn btn-warning" href="{{url('reject_booking', $item->id)}}">Rejected</a>
-
-                        </td> 
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered shadow-sm">
+            <thead style="background-color: rgb(234, 88, 12); color: white;">
+                <tr>
+                    <th>Event title</th>
+                    <th>Visitor</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Status</th>
+                    <th>Prix</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody style="color:black;">
+                @foreach($data as $item)
+                <tr>
+                    <td>{{ $item->event->event_title }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->phone }}</td>
+                    <td>
+                        @if($item->status == 'approve')
+                            <span class="badge bg-success">Approuvé</span>
+                        @elseif($item->status == 'reject')
+                            <span class="badge bg-danger">Rejeté</span>
+                        @else
+                            <span class="badge bg-warning text-dark">En attente</span>
+                        @endif
+                    </td>
+                    <td>{{ $item->event->price }}</td>
+                    <td>
+                        <img src="/event/{{ $item->event->image }}" alt="event image" style="height: 40px;">
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-success mb-1" href="{{ url('approve_book', $item->id) }}">Approuver</a><br>
+                        <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ?')" href="{{ url('delete_booking', $item->id) }}">Supprimer</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
-
-                        
-                        
-                    </tr>
-                    @endforeach
-
-                </table>
-
-
-
-         </div>
-        </div>
-  </div>
 
 @include('admin.footer')
 
