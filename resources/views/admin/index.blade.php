@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head> 
- @include('admin.css')
-      </head>
+    @include('admin.css')
+  </head>
   <body>
-  @include('admin.header')
-
-  @include('admin.sidebar')
-
-  @include('admin.body
-  ')
-
-@include('admin.footer')
-
+    @include('admin.header')
+    @include('admin.sidebar')
+    @php
+        $newClients = \App\Models\User::count();
+        $newEvents = \App\Models\event::count();
+    @endphp
+    @include('admin.body', ['newClients' => $newClients, 'newEvents' => $newEvents])
   </body>
 </html>

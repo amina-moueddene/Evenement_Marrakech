@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User; 
 use App\Models\event;
 use App\Models\Booking;
 use App\Models\Gallary;
@@ -16,6 +16,16 @@ use Illuminate\Notifications\Notification;
 class AdminController extends Controller
 {
 
+
+    public function dashboard()
+{
+    $newClients = User::count(); // Nombre total de clients
+    $newEvents = event::count(); // Nombre total d'événements
+
+    // Passer les données à la vue correcte
+    return view('test', compact('newClients', 'newEvents'));
+}
+    
     public function logout(Request $request)
     {
         Auth::logout();  // Déconnexion de l'utilisateur
