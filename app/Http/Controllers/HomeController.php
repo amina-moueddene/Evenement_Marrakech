@@ -19,28 +19,12 @@ class HomeController extends Controller
 
     public function add_booking(Request $request, $id){
 
-        // $request->validate([
-          
-        //     'startDate' => 'required|date',
-        //     'endDate' => 'date|after :: startDate',
-        // ]);
-
-
         $data= new Booking();
         $data->event_id = $id;
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        // $isbooked= Booking::where('event_id',$id)
-        // ->where('start_date','<=',$endDate)
-        // ->where('end_date','>=',$startDate)->exists();
-        // if($isbooked){
-        //     return redirect()->back()->with('message','event already booked please choose another date');
-        // }
-     
-        // else{
-        //     $data->start_date = $request->startDate;
-        //     $data->end_date = $request->endDate;
+        
             
         $data->save();
         return redirect()->back()->with('message','Booking added successfully');
