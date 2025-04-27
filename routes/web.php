@@ -18,6 +18,8 @@ use App\Http\Controllers\HomeController;
 
 // routes/web.php
 
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
 Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 
 route::get('/',[AdminController::class,'home']);
@@ -69,3 +71,4 @@ route::get('/send_mail/{id}',[AdminController::class,'send_mail']);
 
 
 route::post('/mail/{id}',[AdminController::class,'mail']);
+
