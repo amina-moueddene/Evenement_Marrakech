@@ -1,0 +1,66 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - inscEvent
+  pull_request:
+    branches:
+      - inscEvent
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+          MYSQL_DATABASE: eventmanagment
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    # 1. Vérifier le code source
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Configurer PHP
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, bcmath, intl, pdo, mysql
+        ini-values: post_max_size=256M, upload_max_filesize=256M
+        coverage: none
+
+    # 3. Installer les dépendances
+    - name: Install dependencies
+      run: composer install --no-progress --no-suggest --prefer-dist
+
+    # 4. Configurer l'environnement de test
+    - name: Setup environment
+      run: |
+        cp .env.example .env
+        php artisan config:clear
+
+    # 5. Attendre que MySQL soit prêt
+    - name: Wait for MySQL
+      run: sleep 15
+
+    # 6. Configurer la base de données MySQL
+    - name: Setup MySQL database
+      run: |
+        php artisan migrate:fresh --force
+
+    # 7. Générer la clé d'application
+    - name: Generate application key
+      run: php artisan key:generate
+
+    

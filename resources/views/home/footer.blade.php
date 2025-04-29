@@ -16,7 +16,7 @@
                      <ul class="link_menu">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="about.html"> about</a></li>
-                        <li><a href="room.html">Our Room</a></li>
+                        <li><a href="event.html">Our event</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
@@ -42,11 +42,7 @@
                   <div class="row">
                      <div class="col-md-10 offset-md-1">
                         
-                        <p>
-                        © 2025 Moueddene Html Templates <a style="font-size: small;" href="https://html.design/"> </a>
-                        <br><br>
-                        <a href="https://themewagon.com/" target="_blank"></a>
-                        </p>
+                        
 
                      </div>
                   </div>

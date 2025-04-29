@@ -3,54 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Room;
+use App\Models\event;
 use App\Models\Booking;
 use App\Models\Contact;
 
 
 class HomeController extends Controller
 {
-    public function room_details($id){
+    public function event_details($id){
 
-        $room = Room::find($id);
-        return View ('home.rooms_details',compact('room'));
+        $event = event::find($id);
+        return View ('home.event_details',compact('event'));
        
     }
 
     public function add_booking(Request $request, $id){
 
-        $request->validate([
-          
-            'startDate' => 'required|date',
-            'endDate' => 'date|after :: startDate',
-        ]);
-
-
         $data= new Booking();
-        $data->room_id = $id;
+        $data->event_id = $id;
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-
-
-
-        $startDate = $request->startDate;
-        $endDate = $request->endDate;
-        $isbooked= Booking::where('room_id',$id)
-        ->where('start_date','<=',$endDate)
-        ->where('end_date','>=',$startDate)->exists();
-        if($isbooked){
-            return redirect()->back()->with('message','Room already booked please choose another date');
-        }
-     
-        else{
-            $data->start_date = $request->startDate;
-            $data->end_date = $request->endDate;
+        
             
         $data->save();
         return redirect()->back()->with('message','Booking added successfully');
        
-        }
     }
 
 
@@ -65,9 +43,7 @@ class HomeController extends Controller
 
             return redirect()->back()->with('message','Message sent successfully');
 
-
             
     }
-
 
 }

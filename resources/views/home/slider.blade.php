@@ -31,7 +31,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-5">
-                     <div class="book_room">
+                     <div class="book_event">
                         <h1>Book a Event Online</h1>
                         <form class="book_now">
                            <div class="row">

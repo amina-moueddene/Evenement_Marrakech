@@ -25,7 +25,7 @@
                                 <a class="nav-link" href="about.html">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="room.html">Our Event</a>
+                                <a class="nav-link" href="event.html">Our Event</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="gallery.html">Gallery</a>
