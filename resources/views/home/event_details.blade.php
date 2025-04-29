@@ -151,6 +151,109 @@
                gap: 20px;
             }
          }
+
+         .star-rating .rating-group {
+        display: inline-flex;
+        flex-direction: row-reverse;
+    }
+    
+    .star-rating .star-label {
+        color: #ddd;
+        cursor: pointer;
+        font-size: 1.5rem;
+        padding: 0 0.2rem;
+    }
+    
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #f8ce0b;
+    }
+
+    .comment-container {
+   transition: background-color 0.2s;
+}
+
+.comment-container:hover {
+   background-color: #f9f9f9;
+}
+
+.avatar {
+   width: 48px;
+   height: 48px;
+   border-radius: 50%;
+   background-color: #e9ecef;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: bold;
+   color: #6c757d;
+}
+
+.star-rating .rating-group {
+   display: inline-flex;
+   flex-direction: row-reverse;
+}
+
+.star-rating .star-label {
+   color: #ddd;
+   cursor: pointer;
+   font-size: 1.5rem;
+   padding: 0 0.2rem;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+   color: #f8ce0b;
+}
+
+.formatting-tools button {
+   padding: 0.25rem 0.5rem;
+   font-size: 0.875rem;
+   border: none;
+   background-color: transparent;
+}
+
+.formatting-tools button:hover {
+   background-color: #e9ecef;
+   border-radius: 4px;
+}
+
+/* Customisation du dropdown */
+.dropdown-toggle::after {
+   display: none;
+}
+
+.dropdown .dropdown-menu {
+   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+   border: none;
+   border-radius: 0.5rem;
+}
+
+.dropdown-item {
+   padding: 0.5rem 1rem;
+}
+
+.dropdown-item:active, .dropdown-item:focus {
+   background-color: rgba(255, 140, 0, 0.1);
+   color: #212529;
+}
+
+/* Bouton Submit */
+button[type="submit"] {
+   padding: 0.5rem 1.5rem;
+   border-radius: 20px;
+   font-weight: 500;
+   border: none;
+   transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+   background-color: #E07B00 !important;
+   transform: translateY(-1px);
+}
+
       </style>
    </head>
    <body class="main-layout">
@@ -254,6 +357,124 @@
       </div>
    </div>
 </div>
+
+<!-- Section des commentaires -->
+<div class="container mt-5 mb-5">
+   <div class="card shadow-sm rounded-lg">
+      <div class="card-body p-4">
+         <!-- Formulaire d'ajout de commentaire -->
+         @if(Auth::check())
+            <div class="mb-4">
+               <div class="form-floating mb-3">
+                  <form action="{{ route('events.comments.store', $event) }}" method="POST">
+                     @csrf
+                     <div class="border rounded-lg p-3 bg-light">
+                        <h5 class="mb-3">Ajouter un commentaire...</h5>
+                        
+                        <!-- Étoiles de notation -->
+                        <div class="mb-3">
+                           <div class="star-rating">
+                              <div class="rating-group">
+                                 @for($i = 5; $i >= 1; $i--)
+                                    <input type="radio" id="rating-{{ $i }}" name="rating" value="{{ $i }}" class="d-none" {{ old('rating') == $i ? 'checked' : '' }}>
+                                    <label for="rating-{{ $i }}" class="star-label">
+                                       <i class="fas fa-star"></i>
+                                    </label>
+                                 @endfor
+                              </div>
+                           </div>
+                           @error('rating')
+                              <span class="text-danger">{{ $message }}</span>
+                           @enderror
+                        </div>
+                        
+                        <!-- Zone de texte pour le commentaire -->
+                        <div class="mb-3">
+                           <textarea name="content" id="content" rows="3" class="form-control @error('content') is-invalid @enderror" placeholder="Partagez votre expérience...">{{ old('content') }}</textarea>
+                           @error('content')
+                              <span class="invalid-feedback">{{ $message }}</span>
+                           @enderror
+                        </div>
+                        
+                        <!-- Options de formatage et bouton de soumission -->
+                        <div class="d-flex justify-content-between align-items-center">
+                           <button type="submit" class="btn" style="background-color: #FF8C00; color: white;">Submit</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         @else
+            <div class="alert alert-info mb-4">
+               <a href="{{ route('login') }}" class="alert-link">Connectez-vous</a> pour laisser un commentaire.
+            </div>
+         @endif
+
+         <!-- En-tête de section commentaires -->
+         <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">Commentaires <span class="badge rounded-pill" style="background-color: #FF8C00;">{{ $event->comments->count() }}</span></h4>
+            <div class="dropdown">
+               <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-sort-amount-down"></i> Most recent <i class="fas fa-chevron-down"></i>
+               </button>
+               <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                  <li><a class="dropdown-item" href="#">Most recent</a></li>
+                  <li><a class="dropdown-item" href="#">Top rated</a></li>
+                  <li><a class="dropdown-item" href="#">Oldest first</a></li>
+               </ul>
+            </div>
+         </div>
+
+         <!-- Liste des commentaires -->
+         @if($event->comments->count() > 0)
+            @foreach($event->comments as $comment)
+               <div class="comment-container mb-4">
+                  <div class="d-flex">
+                     <!-- Avatar -->
+                     <div class="me-3">
+                        <div class="avatar" style="width: 48px; height: 48px; border-radius: 50%; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #6c757d;">
+                           {{ strtoupper(substr($comment->user->name, 0, 1)) }}
+                        </div>
+                     </div>
+                     
+                     <!-- Contenu du commentaire -->
+                     <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                           <div>
+                              <h6 class="mb-0 fw-bold">{{ $comment->user->name }}</h6>
+                              <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                           </div>
+                           <div class="rating">
+                              @for($i = 1; $i <= 5; $i++)
+                                 @if($i <= $comment->rating)
+                                    <i class="fas fa-star" style="color: #f8ce0b;"></i>
+                                 @else
+                                    <i class="far fa-star" style="color: #ddd;"></i>
+                                 @endif
+                              @endfor
+                           </div>
+                        </div>
+                        
+                        <div class="comment-content mb-2">
+                           <p class="mb-2">{{ $comment->content }}</p>
+                        </div>
+                        
+                     </div>
+                  </div>
+               </div>
+               <hr class="my-3">
+            @endforeach
+         @else
+            <div class="text-center py-5">
+               <i class="far fa-comment-dots fa-3x mb-3 text-muted"></i>
+               <p class="text-muted">Aucun commentaire pour le moment. Soyez le premier à donner votre avis!</p>
+            </div>
+         @endif
+      </div>
+   </div>
+</div>
+
+
 <!-- end our_event -->
 
       <!-- footer -->
@@ -277,5 +498,42 @@
       </script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-JrA3U+UgZBfsh3Pzj6tEHO+e//7wMFzDb3gwzZxVXkq1q0+fUnk4o0QmFA7t5yH4" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-kyZXEJ03Jtl1p5j9J2fLJrH10rtFuZJ5amX+3eH7kNk6v9wZz7KqFzTf02Fq8yR2" crossorigin="anonymous"></script>
+         
+      <!-- JavaScript pour les étoiles -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const starLabels = document.querySelectorAll('.star-label');
+        
+        starLabels.forEach(label => {
+            label.addEventListener('mouseover', function() {
+                const labelFor = this.getAttribute('for');
+                const rating = labelFor.split('-')[1];
+                
+                // Réinitialiser toutes les étoiles
+                starLabels.forEach(l => l.style.color = '#ddd');
+                
+                // Colorier les étoiles appropriées
+                for (let i = 5; i >= rating; i--) {
+                    document.querySelector(`label[for="rating-${i}"]`).style.color = '#f8ce0b';
+                }
+            });
+        });
+        
+        const ratingGroup = document.querySelector('.rating-group');
+        ratingGroup.addEventListener('mouseleave', function() {
+            starLabels.forEach(label => label.style.color = '#ddd');
+            
+            // Restaurer la sélection si une note est choisie
+            const checkedInput = document.querySelector('.rating-group input:checked');
+            if (checkedInput) {
+                const rating = checkedInput.value;
+                for (let i = 5; i >= rating; i--) {
+                    document.querySelector(`label[for="rating-${i}"]`).style.color = '#f8ce0b';
+                }
+            }
+        });
+    });
+</script>
+
    </body>
 </html>

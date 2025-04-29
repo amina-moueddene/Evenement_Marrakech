@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
-
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,11 @@ use App\Http\Controllers\HomeController;
 */
 
 // routes/web.php
+
+
+
+
+
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
@@ -72,3 +77,5 @@ route::get('/send_mail/{id}',[AdminController::class,'send_mail']);
 
 route::post('/mail/{id}',[AdminController::class,'mail']);
 
+Route::post('/events/{event}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('events.comments.store');
+route::get('/event_details/{id}', [HomeController::class, 'event_details'])->name('event_details');
