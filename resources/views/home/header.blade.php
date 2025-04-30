@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                <nav class="navigation navbar navbar-expand-md navbar-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -34,22 +34,31 @@
                                 <a class="nav-link" href="contact.html">Contact Us</a>
                             </li>
 
-                            <!-- Lien pour les utilisateurs authentifiés -->
+                            <!-- Si utilisateur est authentifié -->
                             @auth
-                                <li class="nav-item">
-                                @auth
-    <li class="nav-item">
-        <!-- Formulaire pour se déconnecter avec la méthode POST -->
-        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-            @csrf <!-- Token CSRF nécessaire pour sécuriser le formulaire -->
-            <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
-    </li>
-@endauth
-
-                                </li>
+                                @if(Auth::user()->usertype === 'user')
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle btn btn-secondary text-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Settings
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ url('/profile') }}">Profile</a>
+                                            <form action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item">Logout</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                @else
+                                    <li class="nav-item">
+                                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Logout</button>
+                                        </form>
+                                    </li>
+                                @endif
                             @else
-                                <!-- Lien pour les utilisateurs non authentifiés -->
+                                <!-- Utilisateur non authentifié -->
                                 <li class="nav-item" style="padding-right:10px;">
                                     <a class="btn btn-success" href="{{ url('login') }}">Log in</a>
                                 </li>

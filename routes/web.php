@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,3 +80,5 @@ route::post('/mail/{id}',[AdminController::class,'mail']);
 
 Route::post('/events/{event}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('events.comments.store');
 route::get('/event_details/{id}', [HomeController::class, 'event_details'])->name('event_details');
+
+Route::get('/profile', [ProfileUserController::class, 'show'])->middleware('auth')->name('user.profile');
