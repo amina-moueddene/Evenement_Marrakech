@@ -33,7 +33,28 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact Us</a>
                             </li>
-
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell fs-4"></i>
+                                    <span id="notification-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">
+                                        0
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width: 320px; max-height: 400px; overflow-y: auto;">
+                                    <div class="dropdown-header d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold">Notifications</span>
+                                        <button id="mark-all-read" class="btn btn-sm btn-link text-decoration-none">Tout marquer comme lu</button>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div id="notifications-list" class="p-0">
+                                        <div class="p-3 text-center">
+                                            <div class="spinner-border spinner-border-sm text-primary" role="status">
+                                                <span class="visually-hidden">Chargement...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <!-- Lien pour les utilisateurs authentifiés -->
                             @auth
                                 <li class="nav-item">
