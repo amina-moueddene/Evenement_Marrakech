@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +79,9 @@ route::post('/mail/{id}',[AdminController::class,'mail']);
 
 Route::post('/events/{event}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('events.comments.store');
 route::get('/event_details/{id}', [HomeController::class, 'event_details'])->name('event_details');
+
+
+Route::get('/notifications', [NotificationController::class, 'index']);
+Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount']);
+Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead']);
+Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead']);

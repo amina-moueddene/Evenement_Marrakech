@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User; 
 use App\Models\event;
 use App\Models\Booking;
+use App\Models\Notification;
 use App\Models\Gallary;
 use App\Models\Contact;
 use App\Notifications\SendEmailNotification;
-use Illuminate\Notifications\Notification;
 
 class AdminController extends Controller
 {
@@ -84,6 +84,16 @@ class AdminController extends Controller
                 $data->image = $imagename;
             }
        $data -> save();
+
+       foreach (User::all() as $user) {
+        Notification::create([
+            'user_id' => $user->id,
+            'title' => $data -> event_title,
+            'link' => route('event_details', $data->id),       
+         ]);
+    }
+
+
          return redirect()->back();
 
     }
