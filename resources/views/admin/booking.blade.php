@@ -55,6 +55,7 @@
                 </tr>
             </thead>
             <tbody style="color:black;">
+                
                 @foreach($data as $item)
                 <tr>
                     <td>{{ $item->event->event_title }}</td>
