@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 
 // routes/web.php
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 
 route::get('/',[AdminController::class,'home']);
@@ -37,6 +37,7 @@ route::get('/event_delete/{id}',[AdminController::class,'event_delete']);
 route::get('/event_update/{id}',[AdminController::class,'event_update']);
 
 route::post('/edit_event/{id}',[AdminController::class,'edit_event']);
+
 
 
 route::get('/event_details/{id}',[HomeController::class,'event_details']);
