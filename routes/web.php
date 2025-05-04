@@ -18,14 +18,16 @@ use App\Http\Controllers\ProfileUserController;
 |
 */
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 
-Route::get('/', [AdminController::class, 'home']);
-Route::get('/home', [AdminController::class, 'index'])->name('home');
+//Route::get('/', [AdminController::class, 'home']);
+
 
 Route::get('/create_event', [AdminController::class, 'create_event']);
 Route::post('/add_event', [AdminController::class, 'add_event']);
