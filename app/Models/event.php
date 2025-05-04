@@ -18,4 +18,9 @@ class event extends Model
         'event_type',
     ];
 
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
 }
