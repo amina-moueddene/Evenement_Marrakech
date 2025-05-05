@@ -16,6 +16,7 @@ class event extends Model
         'price',
         'lieu',
         'event_type',
+
     ];
 
     public function comments()
