@@ -33,6 +33,27 @@
                                class="btn {{ $event == 'sportif' ? 'btn-success text-white' : 'btn-outline-success' }} rounded-pill px-4 py-2 fw-semibold">
                                 Sportif
                             </a>
+             {{-- Artistique --}}
+<a href="{{ route('home', ['event' => 'artistique']) }}"
+   class="btn rounded-pill px-4 py-2 fw-semibold"
+   style="{{ $event == 'artistique'
+              ? 'background-color:#8e44ad; color:white; border:1px solid #8e44ad;'
+              : 'background-color:transparent; color:#8e44ad; border:1px solid #8e44ad;' }}"
+   onmouseover="this.style.backgroundColor='#8e44ad'; this.style.color='white';"
+   onmouseout="this.style.backgroundColor='{{ $event == 'artistique' ? '#8e44ad' : 'transparent' }}'; this.style.color='{{ $event == 'artistique' ? 'white' : '#8e44ad' }}';">
+    artistique
+</a>
+
+{{-- Gastronomique --}}
+<a href="{{ route('home', ['event' => 'gastronomique']) }}"
+   class="btn rounded-pill px-4 py-2 fw-semibold"
+   style="{{ $event == 'gastronomique'
+              ? 'background-color:#e67e22; color:white; border:1px solid #e67e22;'
+              : 'background-color:transparent; color:#e67e22; border:1px solid #e67e22;' }}"
+   onmouseover="this.style.backgroundColor='#e67e22'; this.style.color='white';"
+   onmouseout="this.style.backgroundColor='{{ $event == 'gastronomique' ? '#e67e22' : 'transparent' }}'; this.style.color='{{ $event == 'gastronomique' ? 'white' : '#e67e22' }}';">
+    gastronomique
+</a>
 
                             {{-- Musical --}}
                             <a href="{{ route('home', ['event' => 'musical']) }}"
@@ -40,11 +61,7 @@
                                 Musical
                             </a>
 
-                            {{-- Autre --}}
-                            <a href="{{ route('home', ['event' => 'autre']) }}"
-                               class="btn {{ $event == 'autre' ? 'btn-dark text-white' : 'btn-outline-dark' }} rounded-pill px-4 py-2 fw-semibold">
-                                Autre
-                            </a>
+
 
                         </div>
                     </div>
