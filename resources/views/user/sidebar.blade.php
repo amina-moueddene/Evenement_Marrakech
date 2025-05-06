@@ -1,37 +1,21 @@
-<div class="d-flex align-items-stretch">
-      <!-- Sidebar Navigation-->
-      <nav id="sidebar">
-        <!-- Sidebar Header-->
-        <div class="sidebar-header d-flex align-items-center">
-          <!-- <div class="avatar"><img src="admin/img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div> -->
-          <!-- <div class="title">
-            <h1 class="h5">Mark Stephen</h1>
-            <p>Web Designer</p>
-          </div> -->
-        </div>
-       
-        <ul class="list-unstyled">
-                <li  class="active"><a style="color: white;" href="index.html"> <i class="icon-home"></i>Dashbort </a></li>
-          
-                <li><a style="color: white;" href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Event Manage </a>
-                  <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                    <li><a style="color: white;" href="{{url('create_event')}}">Edit Profile</a></li>
-                    <li><a  style="color: white;" href="{{url('view_event')}}">View Event</a></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a style="color: white;" href="{{url('bookings')}}"> <i class="icon-home"></i>Your Informations </a>
-                </li>
-
-                <li>
-                  <a style="color: white;" href="{{url('view_gallary')}}"> <i class="icon-home"></i>Gallary </a>
-                </li>
-
-                <li>
-                  <a style="color: white;" href="{{url('all_messages')}}"> <i class="icon-home"></i>Message </a>
-                </li>
-
-                
-      </nav>
-      <!-- Sidebar Navigation end-->
+<aside class="w-64 bg-white border-r shadow-lg h-screen sticky top-0 overflow-hidden">
+  <nav class="mt-6 px-2">
+    <ul class="space-y-1">
+      <li>
+        <a href="{{ route('home') }}"
+           class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors {{ request()->routeIs('home') ? 'bg-gray-200 font-semibold' : 'text-gray-700' }}">
+          <i class="icon-user mr-3"></i>
+          Dashbord
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('user.profile') }}"
+           class="flex items-center px-4 py-2 rounded hover:bg-gray-100 transition-colors {{ request()->routeIs('user.profile') ? 'bg-gray-200 font-semibold' : 'text-gray-700' }}">
+          <i class="icon-list mr-3"></i>
+          Your Reservations
+        </a>
+      </li>
+      <!-- Autres liens -->
+    </ul>
+  </nav>
+</aside>

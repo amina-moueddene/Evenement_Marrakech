@@ -62,3 +62,4 @@ Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsR
 Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead']);
 
 Route::get('/profile', [ProfileUserController::class, 'show'])->middleware('auth')->name('user.profile');
+

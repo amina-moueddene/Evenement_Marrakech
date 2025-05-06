@@ -1,5 +1,5 @@
 
-<div class="about">
+<div id="about" class="about">
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-5">
