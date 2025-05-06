@@ -1,6 +1,6 @@
 <!-- filepath: resources/views/home/event.blade.php -->
 
-<div class="our_event">
+<div id="event" class="our_event">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
