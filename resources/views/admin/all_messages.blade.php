@@ -1,90 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head> 
- @include('admin.css')
+    @include('admin.css')
 
- <style>
-     .no-margin-bottom{
-        color: white;
-        text-align: center;
-        margin-top: 20px;
-        font-size: 25px;
-    }
-    .btn{
-        padding: 5px;
-            font-size: 15px;
-            margin: 2px;
-    }
-    .table_deg{
-    border: 2px white solid;
-    margin: auto;
-    width: 100%;
-    text-align: center;
-    margin-top: 40px;
-    }
-    .th_deg{
-        color: black;
-        background-color: #E5C100;
-        padding: 10px;
-    }
-    tr{
-        border: 3px white solid;
-    }
-    td{
-        padding: 5px;
-        font-size: 15px;
-        color: white;
-    
-    }
+    <style>
+      table.table thead th {
+          text-align: center;
+          vertical-align: middle;
+          font-size: 14px;
+          font-weight: 600;
+      }
 
-</style>
+      table.table tbody td {
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+      }
 
-      </head>
+      .btn {
+          border-radius: 6px;
+      }
+
+      .badge {
+          font-size: 13px;
+          padding: 6px 10px;
+          border-radius: 12px;
+      }
+    </style>
+  </head>
   <body>
-  @include('admin.header')
+    @include('admin.header')
 
-  @include('admin.sidebar')
+    @include('admin.sidebar')
 
-        <div class="page-content">
-                <div class="page-header">
-                <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">All Messages</h2>
+    <div class="container-fluid px-4" style="background-color: white; min-height: 100vh; padding-top: 30px;">
+      <h2 style="color: rgb(234, 88, 12); font-weight: bold;">Liste des Messages</h2>
 
-                    <table class="table_deg">
-                    <tr>
-                                <th class="th_deg">Name</th>  
-                                <th class="th_deg">Email</th> 
-                                <th class="th_deg">Phone</th> 
-                                <th class="th_deg">Message</th> 
-                                <th class="th_deg">Send Email</th> 
-                                  
-                    </tr>
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered shadow-sm">
+          <thead style="background-color: rgb(234, 88, 12); color: white;">
+            <tr>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody style="color:black;">
+            @foreach($data as $item)
+            <tr>
+              <td>{{ $item->name }}</td>
+              <td>{{ $item->email }}</td>
+              <td>{{ $item->phone }}</td>
+              <td>{{ $item->message }}</td>
+              <td>
+                <a class="btn btn-sm btn-success" href="{{ url('send_mail', $item->id) }}">Envoyer un mail</a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-
-                    @foreach($data as $item)
-                    <tr>
-                        <td>{{ $item->name}}</td>  
-                        <td>{{ $item->email}}</td> 
-                        <td>{{ $item->phone}} </td> 
-                        <td> {{ $item->message}}</td> 
-                        <td>
-                            <a class="btn btn-success" href="{{url('send_mail',$item->id)}}"> Send mail</a>
-                        </td> 
-                        
-                
-                    </tr>
-                    @endforeach
-                
-
-                </table>
-                
-                    </div>
-            </div>
-        </div>
-
-
-
-@include('admin.footer')
-
+    @include('admin.footer')
   </body>
 </html>
