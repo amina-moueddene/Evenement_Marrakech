@@ -8,7 +8,7 @@
           text-align: center;
           vertical-align: middle;
           font-size: 14px;
-          font-weight: 600;
+          font-weight: 400;
       }
 
       table.table tbody td {

@@ -396,8 +396,6 @@ i[class*='icon-'] {
 nav.navbar {
   background: #2d3035;
   color: #ffffff;
-  padding-top: 20px;
-  padding-bottom: 20px;
   border-bottom: 1px solid #34373d;
   z-index: 10;
 }
@@ -753,9 +751,6 @@ nav#sidebar a i {
   transition: none;
 }
 
-nav#sidebar .sidebar-header {
-  padding: 30px 20px;
-}
 
 nav#sidebar .sidebar-header h1,
 nav#sidebar .sidebar-header p {
@@ -850,7 +845,7 @@ nav#sidebar li::before {
 }
 
 nav#sidebar li.active::before {
-  background: #E5C100;
+  background: rgb(234, 88, 12);
 }
 
 nav#sidebar li.active > a {
@@ -2945,7 +2940,7 @@ mark,
 }
 
 .text-primary {
-  color: #E5C100 !important;
+  color: rgb(234, 88, 12) !important;
 }
 
 a.text-primary:focus, a.text-primary:hover {
@@ -3133,7 +3128,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 }
 
 .text-primary {
-  color: #E5C100 !important;
+  color: rgb(234, 88, 12) !important;
 }
 
 a.text-primary:focus, a.text-primary:hover {

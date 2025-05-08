@@ -6,9 +6,7 @@
     <style>
       table.table thead th {
           text-align: center;
-          vertical-align: middle;
           font-size: 14px;
-          font-weight: 600;
       }
 
       table.table tbody td {
