@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head> 
+<html lang="en">
+<head>
     @include('admin.css')
-  </head>
-  <body>
+</head>
+<body>
     @include('admin.header')
     @include('admin.sidebar')
     @php
@@ -11,5 +11,5 @@
         $newEvents = \App\Models\event::count();
     @endphp
     @include('admin.body', ['newClients' => $newClients, 'newEvents' => $newEvents])
-  </body>
+</body>
 </html>

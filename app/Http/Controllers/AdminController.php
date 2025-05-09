@@ -18,13 +18,27 @@ class AdminController extends Controller
 
 
     public function dashboard()
-{
-    $newClients = User::count(); // Nombre total de clients
-    $newEvents = event::count(); // Nombre total d'événements
+    {
+        $newClients = User::where('usertype', 'user')->count();
+        $newEvents = Event::count();
+        $totalBookings = Booking::count();
+        $pendingBookings = Booking::where('status', 'pending')->count();
+        $approvedBookings = Booking::where('status', 'approve')->count();
+        $monthlyEvents = Event::whereMonth('created_at', now()->month)->count();
+        $recentEvents = Event::latest()->take(5)->get();
 
-    // Passer les données à la vue correcte
-    return view('test', compact('newClients', 'newEvents'));
-}
+        return view('admin.index', compact(
+            'newClients',
+            'newEvents',
+            'totalBookings',
+            'pendingBookings',
+            'approvedBookings',
+            'monthlyEvents',
+            'recentEvents'
+        ));
+    }
+
+    
     
     public function logout(Request $request)
     {
