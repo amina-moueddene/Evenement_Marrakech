@@ -3,10 +3,10 @@ name: Laravel CI
 on:
   push:
     branches:
-      - dashboard_Admin_UI
+      - Home_UI
   pull_request:
     branches:
-      - dashboard_Admin_UI
+      - Home_UI
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
