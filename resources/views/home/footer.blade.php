@@ -19,6 +19,7 @@
                   <li style="margin-bottom :8px;"><a href="#" style="color: #fff; text-decoration: none;">Home</a></li>
                   <li style="margin-bottom :8px;"><a href="#about" style="color: #fff; text-decoration: none;">About</a></li>
                   <li style="margin-bottom :8px;"><a href="#event" style="color: #fff; text-decoration: none;">Our Event</a></li>
+                  <li style="margin-bottom :8px;"><a href="#gallery" style="color: #fff; text-decoration: none;">gallery</a></li>
                   <li style="margin-bottom :8px;"><a href="#blog" style="color: #fff; text-decoration: none;">Blog</a></li>
                   <li style="margin-bottom :8px;"><a href="#contact" style="color: #fff; text-decoration: none;">Contact Us</a></li>
                </ul>
