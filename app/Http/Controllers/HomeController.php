@@ -1,12 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\event;
+use App\Models\Event;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\Gallary;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -43,6 +44,7 @@ public function index(Request $request)
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
+        $data->user_id = Auth::id();
 
         $data->save();
         return redirect()->back()->with('message', 'Booking added successfully');

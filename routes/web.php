@@ -63,3 +63,5 @@ Route::post('/notifications/mark-all-read', [NotificationController::class, 'mar
 
 Route::get('/profile', [ProfileUserController::class, 'show'])->middleware('auth')->name('user.profile');
 
+Route::get('/profile-dashboard', [ProfileUserController::class, 'show_dash'])->middleware('auth')->name('user.dashboard');
+Route::delete('/delete_booking/{id}', [ProfileUserController::class, 'destroy'])->name('delete_booking');

@@ -5,33 +5,35 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Our Event</h2>
+                    <h2>Our Events</h2>
                     <p>
-                        Découvrez les événements incontournables de Marrakech : une ville où la culture, le sport et la musique se rencontrent pour créer des expériences uniques et inoubliables.
-                        Explorez notre sélection d'événements adaptés à tous les goûts et préparez-vous à vivre la magie de Marrakech à chaque instant.
+                       Discover the must-see events of Marrakech: a city where culture, sports, and music come together to create unique and unforgettable experiences.
+Explore our selection of events suited to all tastes and get ready to experience the magic of Marrakech at every moment.
+
+
                     </p>
 
                     {{-- Filter Buttons with Bootstrap --}}
                     <div class="mb-4 mt-3 text-center">
-                        <label class="form-label d-block mb-3 fw-semibold">Filtrer par catégorie :</label>
+                       
                         <div class="d-flex flex-wrap justify-content-center gap-2">
 
                             {{-- Tous --}}
                             <a href="{{ route('home', ['event' => 'all']) }}"
                                class="btn {{ $event == 'all' ? 'btn-warning text-white' : 'btn-outline-warning' }} rounded-pill px-4 py-2 fw-semibold">
-                                Tous
+                                All
                             </a>
 
                             {{-- Culturel --}}
                             <a href="{{ route('home', ['event' => 'culturel']) }}"
                                class="btn {{ $event == 'culturel' ? 'btn-primary text-white' : 'btn-outline-primary' }} rounded-pill px-4 py-2 fw-semibold">
-                                Culturel
+                                Cultural
                             </a>
 
                             {{-- Sportif --}}
                             <a href="{{ route('home', ['event' => 'sportif']) }}"
                                class="btn {{ $event == 'sportif' ? 'btn-success text-white' : 'btn-outline-success' }} rounded-pill px-4 py-2 fw-semibold">
-                                Sportif
+                                Sportive
                             </a>
              {{-- Artistique --}}
 <a href="{{ route('home', ['event' => 'artistique']) }}"
@@ -41,7 +43,7 @@
               : 'background-color:transparent; color:#8e44ad; border:1px solid #8e44ad;' }}"
    onmouseover="this.style.backgroundColor='#8e44ad'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'artistique' ? '#8e44ad' : 'transparent' }}'; this.style.color='{{ $event == 'artistique' ? 'white' : '#8e44ad' }}';">
-    artistique
+    Artistic
 </a>
 
 {{-- Gastronomique --}}
@@ -52,7 +54,7 @@
               : 'background-color:transparent; color:#e67e22; border:1px solid #e67e22;' }}"
    onmouseover="this.style.backgroundColor='#e67e22'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'gastronomique' ? '#e67e22' : 'transparent' }}'; this.style.color='{{ $event == 'gastronomique' ? 'white' : '#e67e22' }}';">
-    gastronomique
+    Gastronomic
 </a>
 
                             {{-- Musical --}}
@@ -89,9 +91,14 @@
                                 <p class="my-2">
                                     {!! Str::limit($e->description, 100) !!}
                                 </p>
-                                <a class="btn text-white mt-auto" style="background-color:#E5C100; border-color:#E5C100;" href="{{ route('event_details', $e->id) }}">
-                                    Event details
-                                </a>
+                               <a 
+    href="{{ route('event_details', $e->id) }}" 
+    class="btn text-white mt-auto" 
+    style="background-color:#ff9924; border-color:#fcab29;"
+    onmouseover="this.style.backgroundColor='#f97316'" 
+    onmouseout="this.style.backgroundColor='#ff9924'">
+    Check details
+</a>
                             </div>
                         </div>
                     </div>
