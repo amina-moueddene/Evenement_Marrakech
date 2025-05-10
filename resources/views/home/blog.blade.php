@@ -1,5 +1,5 @@
 <!-- blog -->
-<div  class="blog">
+<div id="blog" class="blog">
          <div class="container">
             <div class="row">
                <div class="col-md-12">

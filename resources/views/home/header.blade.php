@@ -6,7 +6,7 @@
                 <div class="full">
                     <div class="center-desk">
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="images/logo.png" alt="#" /></a>
+                            <a href="{{ url('/') }}"><img src="images/logo.png" alt="#" style="width :80px;" /></a>
                         </div>
                     </div>
                 </div>
@@ -19,20 +19,23 @@
                     <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ url('/') }}">Home</a>
+                                <a class="nav-link" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}#about">About</a>
+                                <a class="nav-link" href="#about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}#event">Our Event</a>
+                                <a class="nav-link" href="#event">Our Event</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}#gallery">Gallery</a>
+                                <a class="nav-link" href="#gallery">Gallery</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}#contact">Contact Us</a>
+                                <a class="nav-link" href="#blog">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact">Contact Us</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,7 +89,7 @@
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="btn btn-primary" href="{{ url('register') }}">Register</a>
+                                        <a class="btn btn-primary" href="{{ url('register') }}" style="background-color: #FF8C00; border:#FF8C00; ">Register</a>
                                     </li>
                                 @endif
                             @endauth
