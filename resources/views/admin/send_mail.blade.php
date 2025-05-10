@@ -1,138 +1,152 @@
 <!DOCTYPE html>
-<html>
-  <head> 
+<html lang="fr">
+<head> 
   <base href="/public">
+  @include('admin.css')
+  <style>
+    :root {
+      --primary-color: rgb(234, 88, 12);
+      --primary-light: rgba(234, 88, 12, 0.1);
+      --primary-dark: rgb(194, 65, 12);
+      --text-light: #f8fafc;
+      --text-dark: #334155;
+      --border-radius: 8px;
+    }
 
- @include('admin.css')
+    .page-content {
+      background-color: #f8fafc;
+      min-height: 100vh;
+      padding: 2rem 0;
+    }
 
- <style>
-    /* Style général pour les labels */
+    .form-container {
+      max-width: 650px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .form-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-bottom: 4px solid var(--primary-dark);
+    }
+
+    .form-header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .form-body {
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
     label {
-        display: block; /* Afficher les labels en bloc pour une meilleure organisation */
-        /* width: 200px; */
-        font-weight: bold; /* Texte en gras */
-        margin-bottom: 10px; /* Espacement entre les labels et les champs */
-        color: #333; /* Couleur du texte */
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+      font-size: 1rem;
     }
 
-    /* Style pour les champs de formulaire */
     input[type="text"],
-    input[type="number"],
-    select,
     textarea {
-        width: 100%; /* Largeur maximale */
-        /* padding: 10px; Espacement intérieur */
-        /* margin-bottom: 20px; Espacement entre les champs */
-        border: 1px solid #ccc; /* Bordure légère */
-        border-radius: 5px; /* Coins arrondis */
-        font-size: 16px; /* Taille de la police */
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: #fff;
+      color: #000;
     }
 
-    /* Style pour le bouton "Add event" */
-    input[type="submit"] {
-        background-color: #4CAF50; /* Couleur de fond verte */
-        color: white; /* Texte blanc */
-        padding: 12px 20px; /* Espacement intérieur */
-        border: none; /* Pas de bordure */
-        border-radius: 5px; /* Coins arrondis */
-        cursor: pointer; /* Curseur en forme de main */
-        font-size: 16px; /* Taille de la police */
-        transition: background-color 0.3s ease; /* Animation au survol */
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
     }
 
-    /* Effet au survol du bouton */
-    input[type="submit"]:hover {
-        background-color: #45a049; /* Changement de couleur au survol */
+    textarea {
+      min-height: 120px;
+      resize: vertical;
     }
 
-    /* Style pour le conteneur principal */
-    .dev_deg {
-        
-        padding-top: 20px;
-        max-width: 600px; /* Largeur maximale du formulaire */
-        margin: 0 auto; /* Centrer le formulaire */
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      margin-top: 1rem;
     }
 
-    /* Style pour le conteneur centré */
-    .dev_center {
-        /* text-align: center; */
-        padding-top: 20px;
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
     }
 
-    /* Style pour le champ de fichier */
-    input[type="file"] {
-        margin-bottom: 20px; /* Espacement en bas */
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .form-body {
+        padding: 1.5rem;
+      }
     }
-
-    /* Style pour les cases à cocher (lieu) */
-    input[type="checkbox"] {
-        margin-right: 10px; /* Espacement à droite */
-    }
-
-    /* Style pour les options de type de chambre */
-    select {
-        appearance: none; /* Supprime l'apparence par défaut */
-        background-color: #f9f9f9; /* Couleur de fond */
-    }
-</style>
-      </head>
-  <body>
+  </style>
+</head>
+<body>
   @include('admin.header')
-
   @include('admin.sidebar')
 
-
-        <div class="page-content">
-                <div class="page-header">
-                     <div class="container-fluid">
-
-                     <center>
-                        <h1 style="font-size:30px;font-weight:bold; color:white"> Send Email to {{$data->name}} </h1>
-
-                        <form action="{{url('mail',$data->id)}}" method="post" >
-                    @csrf    
-                    <div class="dev_deg">
-                            <label style="color: white;text-align:left;" for="" >Greeting</label>
-                            <input type="text" name="greeting">
-                        </div>
-
-                        <div class="dev_deg">
-                            <label style="color: white; text-align:left;" for=""> Mail Body </label>
-                           <textarea name="body" id=""></textarea>
-                        </div>
-
-                        <div class="dev_deg">
-                            <label style="color: white; text-align:left;" for="">Action Text</label>
-                            <input type="text" name="action_text">
-                        </div>
-
-                        <div class="dev_deg">
-                            <label style="color: white;text-align:left;" for="">Action Url</label>
-                            <input type="text" name="action_url">
-                        </div>
-
-                        <div class="dev_deg">
-                            <label style="color: white; text-align:left;" for="">End Line</label>
-                            <input type="text" name="endline">
-                        </div>
-                        
-
-                        
-
-                        <div class="dev_deg">
-                            <input class="btn btn-primary" type="submit" value="Send mail" >
-                        </div>
-                    </form>
-        
-                     </center>
-
-                     </div>
-                </div>
+  <div class="page-content">
+    <div class="container-fluid">
+      <div class="form-container">
+        <div class="form-header">
+          <h1>Envoyer un e-mail à {{$data->name}}</h1>
         </div>
+        
+        <div class="form-body">
+          <form action="{{url('mail',$data->id)}}" method="post">
+            @csrf
+            
+            <div class="form-group">
+              <label for="greeting">Salutation</label>
+              <input type="text" id="greeting" name="greeting" placeholder="Ex: Bonjour {{$data->name}}">
+            </div>
 
+            <div class="form-group">
+              <label for="body">Corps du message</label>
+              <textarea id="body" name="body" placeholder="Entrez le contenu principal de votre e-mail"></textarea>
+            </div>
 
+           
 
-@include('admin.footer')
+            <div class="form-group">
+              <label for="endline">Phrase de conclusion</label>
+              <input type="text" id="endline" name="endline" placeholder="Ex: Cordialement,">
+            </div>
 
-  </body>
+            <button type="submit" class="btn-primary">Envoyer l'e-mail</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @include('admin.footer')
+</body>
 </html>
