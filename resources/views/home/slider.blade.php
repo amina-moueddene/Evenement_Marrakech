@@ -7,15 +7,15 @@
             </ol>
             <div class="carousel-inner">
                <div class="carousel-item active">
-                  <img class="first-slide" src="images/banner1.jpg" alt="First slide">
+                  <img class="first-slide" src="images/slider1.png" alt="First slide" style="object-fit: cover; ">
                   <div class="container">
                   </div>
                </div>
                <div class="carousel-item">
-                  <img class="second-slide" src="images/banner2.jpg" alt="Second slide">
+                  <img class="second-slide" src="images/slider2.jpg" alt="Second slide" style="object-fit: cover; width: 100%; height: 100%;">
                </div>
                <div class="carousel-item">
-                  <img class="third-slide" src="images/banner3.jpg" alt="Third slide">
+                  <img class="third-slide" src="images/slider1.png" alt="Third slide" style="object-fit: cover; width: 100%; height: 100%;">
                </div>
             </div>
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

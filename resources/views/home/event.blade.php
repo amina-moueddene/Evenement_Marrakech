@@ -6,20 +6,15 @@
             <div class="col-md-12">
                 <div class="titlepage">
                     <h2>Our Event</h2>
-                    <p>
-                        Découvrez les événements incontournables de Marrakech : une ville où la culture, le sport et la musique se rencontrent pour créer des expériences uniques et inoubliables.
-                        Explorez notre sélection d'événements adaptés à tous les goûts et préparez-vous à vivre la magie de Marrakech à chaque instant.
-                    </p>
-
+                    <p>Discover our events and activities that will make your experience unforgettable. Join us for a unique adventure!</p>
                     {{-- Filter Buttons with Bootstrap --}}
                     <div class="mb-4 mt-3 text-center">
-                        <label class="form-label d-block mb-3 fw-semibold">Filtrer par catégorie :</label>
                         <div class="d-flex flex-wrap justify-content-center gap-2">
 
                             {{-- Tous --}}
                             <a href="{{ route('home', ['event' => 'all']) }}"
                                class="btn {{ $event == 'all' ? 'btn-warning text-white' : 'btn-outline-warning' }} rounded-pill px-4 py-2 fw-semibold">
-                                Tous
+                                All
                             </a>
 
                             {{-- Culturel --}}
@@ -41,7 +36,7 @@
               : 'background-color:transparent; color:#8e44ad; border:1px solid #8e44ad;' }}"
    onmouseover="this.style.backgroundColor='#8e44ad'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'artistique' ? '#8e44ad' : 'transparent' }}'; this.style.color='{{ $event == 'artistique' ? 'white' : '#8e44ad' }}';">
-    artistique
+    artistiques
 </a>
 
 {{-- Gastronomique --}}
@@ -52,7 +47,7 @@
               : 'background-color:transparent; color:#e67e22; border:1px solid #e67e22;' }}"
    onmouseover="this.style.backgroundColor='#e67e22'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'gastronomique' ? '#e67e22' : 'transparent' }}'; this.style.color='{{ $event == 'gastronomique' ? 'white' : '#e67e22' }}';">
-    gastronomique
+    Gastronomique
 </a>
 
                             {{-- Musical --}}
