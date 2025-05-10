@@ -5,10 +5,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Our Event</h2>
-                    <p>Discover our events and activities that will make your experience unforgettable. Join us for a unique adventure!</p>
+                    <h2>Our Events</h2>
+                    <p>
+                       Discover the must-see events of Marrakech: a city where culture, sports, and music come together to create unique and unforgettable experiences.
+Explore our selection of events suited to all tastes and get ready to experience the magic of Marrakech at every moment.
+
+
+                    </p>
+
                     {{-- Filter Buttons with Bootstrap --}}
                     <div class="mb-4 mt-3 text-center">
+                       
+
                         <div class="d-flex flex-wrap justify-content-center gap-2">
 
                             {{-- Tous --}}
@@ -20,13 +28,13 @@
                             {{-- Culturel --}}
                             <a href="{{ route('home', ['event' => 'culturel']) }}"
                                class="btn {{ $event == 'culturel' ? 'btn-primary text-white' : 'btn-outline-primary' }} rounded-pill px-4 py-2 fw-semibold">
-                                Culturel
+                                Cultural
                             </a>
 
                             {{-- Sportif --}}
                             <a href="{{ route('home', ['event' => 'sportif']) }}"
                                class="btn {{ $event == 'sportif' ? 'btn-success text-white' : 'btn-outline-success' }} rounded-pill px-4 py-2 fw-semibold">
-                                Sportif
+                                Sportive
                             </a>
              {{-- Artistique --}}
 <a href="{{ route('home', ['event' => 'artistique']) }}"
@@ -36,7 +44,8 @@
               : 'background-color:transparent; color:#8e44ad; border:1px solid #8e44ad;' }}"
    onmouseover="this.style.backgroundColor='#8e44ad'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'artistique' ? '#8e44ad' : 'transparent' }}'; this.style.color='{{ $event == 'artistique' ? 'white' : '#8e44ad' }}';">
-    artistiques
+
+    Artistic
 </a>
 
 {{-- Gastronomique --}}
@@ -47,7 +56,9 @@
               : 'background-color:transparent; color:#e67e22; border:1px solid #e67e22;' }}"
    onmouseover="this.style.backgroundColor='#e67e22'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'gastronomique' ? '#e67e22' : 'transparent' }}'; this.style.color='{{ $event == 'gastronomique' ? 'white' : '#e67e22' }}';">
-    Gastronomique
+
+    Gastronomic
+
 </a>
 
                             {{-- Musical --}}
@@ -84,9 +95,14 @@
                                 <p class="my-2">
                                     {!! Str::limit($e->description, 100) !!}
                                 </p>
-                                <a class="btn text-white mt-auto" style="background-color:#E5C100; border-color:#E5C100;" href="{{ route('event_details', $e->id) }}">
-                                    Event details
-                                </a>
+                               <a 
+    href="{{ route('event_details', $e->id) }}" 
+    class="btn text-white mt-auto" 
+    style="background-color:#ff9924; border-color:#fcab29;"
+    onmouseover="this.style.backgroundColor='#f97316'" 
+    onmouseout="this.style.backgroundColor='#ff9924'">
+    Check details
+</a>
                             </div>
                         </div>
                     </div>

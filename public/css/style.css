@@ -283,10 +283,8 @@ button {
 .navigation.navbar-dark .navbar-nav .nav-link.active,
 .navigation.navbar-dark .navbar-nav .nav-link.show,
 .navigation.navbar-dark .navbar-nav .show>.nav-link {
-     color: #FF8C00
-;
-     border-bottom: #FF8C00
- solid 3px;
+     color: #FF8C00;
+     border-bottom: #FF8C00 solid 3px;
 }
 
 .header {
