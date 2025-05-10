@@ -66,5 +66,8 @@ Route::get('/notifications/unread-count', [NotificationController::class, 'unrea
 Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.mark_as_read');
 Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.mark_all_as_read');
 
-// User profile
+
+Route::delete('/delete_booking/{id}', [ProfileUserController::class, 'destroy'])->name('delete_booking');
+
 Route::get('/profile', [ProfileUserController::class, 'show'])->middleware('auth')->name('user.profile');
+
