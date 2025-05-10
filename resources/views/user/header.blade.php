@@ -1,29 +1,99 @@
-<header class="bg-white shadow">
-  <nav class="container mx-auto px-4 py-3 flex items-center justify-between" x-data="{ userOpen: false }">
-    <!-- Logo / Home -->
-    <a href="{{ route('home') }}" class="flex items-center space-x-2">
-      <img src="/images/logo.png" alt="Logo" class="h-8 w-8">
-      <span class="text-xl font-bold text-gray-800">DashBord User</span>
-    </a>
+<!-- header inner -->
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                <div class="full">
+                    <div class="center-desk">
+                        <div class="logo">
+                            <a href="{{ url('/') }}"><img src="images/logo.png" alt="#" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                <nav class="navigation navbar navbar-expand-md navbar-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('/') }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}#event">Our Event</a>
+                            </li>
 
-    <!-- User Dropdown -->
-    <div class="relative">
-      <button @click="userOpen = !userOpen"
-              class="flex items-center space-x-2 bg-white border border-gray-200 rounded-full px-3 py-1 hover:bg-gray-50 focus:outline-none">
-        <span class="text-gray-700 font-medium">{{ Auth::user()->name }}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.293l3.71-4.063a.75.75 0 111.13.994l-4 4.375a.75.75 0 01-1.08 0l-4-4.375a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-        </svg>
-      </button>
-
-      <div x-show="userOpen" @click.away="userOpen = false"
-           class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg py-1 z-20">
-        <a href="{{ route('user.profile') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Log Out</button>
-        </form>
-      </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}#gallery">Gallery</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}#contact">Contact Us</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell fs-4"></i>
+                                    <span id="notification-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">
+                                        0
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width: 320px; max-height: 400px; overflow-y: auto;">
+                                    <div class="dropdown-header d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold">Notifications</span>
+                                        <button id="mark-all-read" class="btn btn-sm btn-link text-decoration-none">Tout marquer comme lu</button>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div id="notifications-list" class="p-0">
+                                        <div class="p-3 text-center">
+                                            <div class="spinner-border spinner-border-sm text-primary" role="status">
+                                                <span class="visually-hidden">Chargement...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Lien pour les utilisateurs authentifiés -->
+                            @auth
+                                @if(Auth::user()->usertype === 'user')
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle btn btn-secondary text-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Settings
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ url('/profile') }}">Profile</a>
+                                            <form action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item">Logout</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                @else
+                                    <li class="nav-item">
+                                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Logout</button>
+                                        </form>
+                                    </li>
+                                @endif
+                            @else
+                                <!-- Utilisateur non authentifié -->
+                                <li class="nav-item" style="padding-right:10px;">
+                                    <a class="btn btn-success" href="{{ url('login') }}">Log in</a>
+                                </li>
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="btn btn-primary" href="{{ url('register') }}">Register</a>
+                                    </li>
+                                @endif
+                            @endauth
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </div>
-  </nav>
-</header>
+</div>

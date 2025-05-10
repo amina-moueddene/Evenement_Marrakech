@@ -23,4 +23,9 @@ class Booking extends Model
     public function event(){
         return $this->hasOne('App\Models\event', 'id', 'event_id');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

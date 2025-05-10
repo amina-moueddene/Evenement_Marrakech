@@ -273,7 +273,7 @@ button[type="submit"]:hover {
       <div class="row">
          <div class="col-md-12 text-center mb-4">
             <div class="titlepage">
-               <h2 class="section-title">Our Event</h2>
+               <h2 class="section-title">Our Events</h2>
             </div>
          </div>
       </div>
@@ -292,11 +292,11 @@ button[type="submit"]:hover {
                   <p style="text-align: justify; color: #555; margin-top: 0.5rem;">{{$event->description}}</p>
                   <div class="event-details">
                      <div class="event-detail">
-                        <h4>Lieu</h4>
+                        <h4>Location</h4>
                         <p>{{$event->lieu}}</p>
                      </div>
                      <div class="event-detail">
-                        <h4>Type d'événement</h4>
+                        <h4>Event type</h4>
                         <p>{{$event->event_type}}</p>
                      </div>
                      <div class="event-detail">
@@ -315,7 +315,7 @@ button[type="submit"]:hover {
          <!-- Booking Form -->
          <div class="col-md-4">
             <div class="card shadow-sm p-4 booking-card rounded-lg">
-               <h4 class="text-center mb-4 text-orange-600 font-semibold">📅 Réserver cet événement</h4>
+               <h4 class="text-center mb-4 text-orange-600 font-semibold">📅 Book a ticket</h4>
 
                @if(session()->has('message'))
                   <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -333,7 +333,7 @@ button[type="submit"]:hover {
                <form action="{{ url('add_booking', $event->id) }}" method="POST">
                   @csrf
                   <div class="form-group">
-                     <label for="name">Nom</label>
+                     <label for="name">Name</label>
                      <input type="text" name="name" class="form-control"
                         @if(Auth::id()) value="{{ Auth::user()->name }}" @endif>
                   </div>
@@ -345,12 +345,12 @@ button[type="submit"]:hover {
                   </div>
 
                   <div class="form-group">
-                     <label for="phone">Téléphone</label>
+                     <label for="phone">Phone number</label>
                      <input type="text" name="phone" class="form-control"
                         @if(Auth::id()) value="{{ Auth::user()->phone }}" @endif>
                   </div>
 
-                  <button type="submit" class="btn orange-btn">Réserver</button>
+                  <button type="submit" class="btn orange-btn">Book now</button>
                </form>
             </div>
          </div>
@@ -369,7 +369,7 @@ button[type="submit"]:hover {
                   <form action="{{ route('events.comments.store', $event) }}" method="POST">
                      @csrf
                      <div class="border rounded-lg p-3 bg-light">
-                        <h5 class="mb-3">Ajouter un commentaire...</h5>
+                        <h5 class="mb-3">Add a comment...</h5>
                         
                         <!-- Étoiles de notation -->
                         <div class="mb-3">
@@ -406,13 +406,13 @@ button[type="submit"]:hover {
             </div>
          @else
             <div class="alert alert-info mb-4">
-               <a href="{{ route('login') }}" class="alert-link">Connectez-vous</a> pour laisser un commentaire.
+               <a href="{{ route('login') }}" class="alert-link">Log in</a> to write a comment.
             </div>
          @endif
 
          <!-- En-tête de section commentaires -->
          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="mb-0">Commentaires <span class="badge rounded-pill" style="background-color: #FF8C00;">{{ $event->comments->count() }}</span></h4>
+            <h4 class="mb-0">Comments <span class="badge rounded-pill" style="background-color: #FF8C00;">{{ $event->comments->count() }}</span></h4>
             <div class="dropdown">
                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fas fa-sort-amount-down"></i> Most recent <i class="fas fa-chevron-down"></i>
@@ -467,7 +467,7 @@ button[type="submit"]:hover {
          @else
             <div class="text-center py-5">
                <i class="far fa-comment-dots fa-3x mb-3 text-muted"></i>
-               <p class="text-muted">Aucun commentaire pour le moment. Soyez le premier à donner votre avis!</p>
+               <p class="text-muted">No comments yet. Be the first to give your opinion!</p>
             </div>
          @endif
       </div>
