@@ -22,7 +22,7 @@
 
     {{-- Logo --}}
     <a href="{{ route('home') }}" class="flex items-center space-x-2">
-      <img src="/images/logo.png" alt="Logo" class="h-15 w-30">
+      <img src="/images/logo.png" alt="Logo" class="h-15 w-30" style="height :80px;">
     </a>
 
     <div class="flex items-center space-x-6 relative">

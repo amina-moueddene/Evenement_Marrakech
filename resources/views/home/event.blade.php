@@ -16,6 +16,7 @@ Explore our selection of events suited to all tastes and get ready to experience
                     {{-- Filter Buttons with Bootstrap --}}
                     <div class="mb-4 mt-3 text-center">
                        
+
                         <div class="d-flex flex-wrap justify-content-center gap-2">
 
                             {{-- Tous --}}
@@ -43,6 +44,7 @@ Explore our selection of events suited to all tastes and get ready to experience
               : 'background-color:transparent; color:#8e44ad; border:1px solid #8e44ad;' }}"
    onmouseover="this.style.backgroundColor='#8e44ad'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'artistique' ? '#8e44ad' : 'transparent' }}'; this.style.color='{{ $event == 'artistique' ? 'white' : '#8e44ad' }}';">
+
     Artistic
 </a>
 
@@ -54,7 +56,9 @@ Explore our selection of events suited to all tastes and get ready to experience
               : 'background-color:transparent; color:#e67e22; border:1px solid #e67e22;' }}"
    onmouseover="this.style.backgroundColor='#e67e22'; this.style.color='white';"
    onmouseout="this.style.backgroundColor='{{ $event == 'gastronomique' ? '#e67e22' : 'transparent' }}'; this.style.color='{{ $event == 'gastronomique' ? 'white' : '#e67e22' }}';">
+
     Gastronomic
+
 </a>
 
                             {{-- Musical --}}
