@@ -8,12 +8,12 @@ on:
     branches:
       - Home_UI
 jobs:
-  laravel-tests:
-    runs-on: ubuntu-latest
+
 
     services:
       mysql:
         image: mysql:8.0
+
         ports:
           - 3306:3306
         env:
@@ -46,12 +46,6 @@ jobs:
     # 4. Configurer l'environnement de test
     - name: Setup environment
       run: |
-        cp .env.example .env
-        php artisan config:clear
-
-    # 5. Attendre que MySQL soit prêt
-    - name: Wait for MySQL
-      run: sleep 15
 
     # 6. Configurer la base de données MySQL
     - name: Setup MySQL database
